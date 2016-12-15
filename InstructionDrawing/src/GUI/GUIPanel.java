@@ -54,7 +54,10 @@ public class GUIPanel {
 	
 	//Set The Title Of The Frame Window
 	public static void UpdateTitle(String str) {
-		frame.setTitle(str);
+		if(!(frame.getTitle().charAt(frame.getTitle().length() - 1) == '*')) {
+			frame.setTitle(str + "*");
+		}
+		else frame.setTitle(str);
 	}
 	
 	//Opens A Message Box

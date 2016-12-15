@@ -1,11 +1,17 @@
 package GUI;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
+
+import javax.imageio.ImageIO;
 import javax.swing.JFileChooser;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 import Components.InstructionFile;
 
@@ -13,7 +19,7 @@ import Components.InstructionFile;
 	public class MenuBar extends JMenuBar{
 		private static final long serialVersionUID = 1L;
 		private static final String[][] arrMenuNames = 	{ 
-												{"File", "The File Menu, Allowing A User To; Load, Save, & Export Images", "Open File", "Save File", "Quit"},
+												{"File", "The File Menu, Allowing A User To; Load, Save, & Export Images", "Open File", "Save File", "Save File As", "Save Image", "Quit"},
 												{"Help", "The Help Menu, Displaying Information About The Program & How To Use It", "About"}
 											};
 
@@ -78,9 +84,13 @@ import Components.InstructionFile;
 				}
 			}
 			
+			final JFileChooser fc = new JFileChooser();
+			final FileNameExtensionFilter txtFilter = new FileNameExtensionFilter(".txt", "txt");
+			final FileNameExtensionFilter pngFilter = new FileNameExtensionFilter(".png", "png");
+			
 			//Constructs a new InstructionFile object with the selected file
 			public void open_file_menu() {
-				final JFileChooser fc = new JFileChooser();
+				fc.setFileFilter(txtFilter);
 				fc.showOpenDialog(null);
 				if(fc.getSelectedFile() != null) {
 					InstructionFile file = new InstructionFile(fc.getSelectedFile());
@@ -89,7 +99,28 @@ import Components.InstructionFile;
 
 			//Outputs the current textbox to a file of their choosing
 			public void save_file_menu() {
-				System.out.println("Save File-TODO");
+				fc.setFileFilter(txtFilter);
+				System.out.println("SaveFile-TODO");
+			}
+			
+			//Outputs the current textbox to a file of their choosing
+			public void save_file_as_menu() {
+				fc.setFileFilter(txtFilter);
+				System.out.println("SaveFileAs-TODO");
+			}
+			
+			//Outputs the current image to a file of their choosing
+			public void save_image_menu() {
+				fc.setFileFilter(pngFilter);
+				int saveValue = fc.showSaveDialog(null);
+				BufferedImage image = GUIPanel.getDrawingPanel().getImage();
+		        if (saveValue == JFileChooser.APPROVE_OPTION) {
+		            try {
+		                ImageIO.write(image, "png", new File(fc.getSelectedFile().getAbsolutePath() + ".png"));
+		            } catch (IOException e) {
+		                e.printStackTrace();
+		            }
+		        }
 			}
 
 			//Displays information about the program
@@ -97,6 +128,7 @@ import Components.InstructionFile;
 				System.out.println("About-TODO");
 			}
 			
+			//Quits the program after asking if the user would like to change anything
 			public void quit_menu() {
 				System.out.println("Quit-TODO");
 			}

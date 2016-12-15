@@ -75,6 +75,10 @@ public class GraphicsPanel extends JPanel {
 		return image.getGraphics();
 	}
 	
+	public BufferedImage getImage() {
+		return image;
+	}
+	
 	public String checkCoordinates(int x, int y) {
 		String message = "OKAY";
 		

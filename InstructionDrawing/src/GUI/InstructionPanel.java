@@ -11,6 +11,9 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.border.Border;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
+
 import Components.InstructionFile;
 
 public class InstructionPanel extends JPanel{
@@ -29,6 +32,7 @@ public class InstructionPanel extends JPanel{
 		//Text Box
 		Border border = BorderFactory.createLineBorder(Color.black);
 		txtInstructions.setBorder(border);
+		txtInstructions.getDocument().addDocumentListener(new TextAreaListener());
 		JScrollPane scrollPane = new JScrollPane(txtInstructions, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 		
 		//Create Buttons & Add Listeners
@@ -56,6 +60,20 @@ public class InstructionPanel extends JPanel{
 	
 	public static JTextArea getInstructionBox() {
 		return InstructionPanel.txtInstructions;
+	}
+	
+	private class TextAreaListener implements DocumentListener{
+		public void changedUpdate(DocumentEvent e) {
+			GUIPanel.UpdateTitle();
+		}
+
+		public void insertUpdate(DocumentEvent e) {
+			GUIPanel.isTextChanged();
+		}
+
+		public void removeUpdate(DocumentEvent e) {
+			GUIPanel.isTextChanged();
+		}
 	}
 	
 	/*
