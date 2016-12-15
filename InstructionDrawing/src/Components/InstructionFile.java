@@ -42,8 +42,8 @@ public class InstructionFile {
 			strInstructions = lstLines.toArray(new String[]{});
 		}
 		
-		GUIPanel.UpdateTitle(InstructionFile.file.getName()); //Update The Frame's Title
 		GUI.InstructionPanel.UpdateTextContents(strInstructions); //Update The Text Box Content
+		GUIPanel.UpdateTitle(InstructionFile.file.getName()); //Update The Frame's Title
 	}
 	
 	//Updates the instructions variable with the textbox contents

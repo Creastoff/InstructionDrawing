@@ -64,15 +64,15 @@ public class InstructionPanel extends JPanel{
 	
 	private class TextAreaListener implements DocumentListener{
 		public void changedUpdate(DocumentEvent e) {
-			GUIPanel.UpdateTitle();
+			GUIPanel.onTextBoxUpdate(GUIPanel.GetFrameTitle());
 		}
 
 		public void insertUpdate(DocumentEvent e) {
-			GUIPanel.isTextChanged();
+			GUIPanel.onTextBoxUpdate(GUIPanel.GetFrameTitle());
 		}
 
 		public void removeUpdate(DocumentEvent e) {
-			GUIPanel.isTextChanged();
+			GUIPanel.onTextBoxUpdate(GUIPanel.GetFrameTitle());
 		}
 	}
 	

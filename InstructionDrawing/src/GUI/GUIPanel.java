@@ -14,7 +14,8 @@ import Instructions.SolidCircle;
 import Instructions.Text;
 
 public class GUIPanel {
-	private static JFrame frame = new JFrame("Assignment");
+	private static String frameTitle = " - Instruction Drawer";
+	private static JFrame frame = new JFrame("Untitled" + frameTitle);
 	private static GraphicsPanel drawingPanel = new GraphicsPanel();
 	private static InstructionPanel textPanel = new InstructionPanel();
 	public static final List<Instruction> lstValidInstructions = new ArrayList<Instruction>();
@@ -54,10 +55,18 @@ public class GUIPanel {
 	
 	//Set The Title Of The Frame Window
 	public static void UpdateTitle(String str) {
-		if(!(frame.getTitle().charAt(frame.getTitle().length() - 1) == '*')) {
-			frame.setTitle(str + "*");
+		frame.setTitle(str + frameTitle);
+	}
+
+	public static void onTextBoxUpdate(String str) {
+		if(!(frame.getTitle().charAt(0) == '*')) {
+			frame.setTitle("*" + str);
 		}
 		else frame.setTitle(str);
+	}
+	
+	public static String GetFrameTitle() {
+		return frame.getTitle();
 	}
 	
 	//Opens A Message Box
