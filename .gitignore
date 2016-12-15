@@ -49,6 +49,8 @@ Temporary Items
 # =========================
 # Eclipse Workspace files
 # =========================
+.gitignore
+.gitattributes
 .metadata/
 InstructionDrawing/.metadata/
 InstructionDrawing/bin/
