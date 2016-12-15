@@ -50,5 +50,6 @@ Temporary Items
 # Eclipse Workspace files
 # =========================
 .metadata/
+.recommenders/
 InstructionDrawing/.metadata/
 InstructionDrawing/bin/
