@@ -1,4 +1,5 @@
 package GUI;
+import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
@@ -16,6 +17,7 @@ import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
 import Components.InstructionFile;
@@ -148,8 +150,6 @@ import Components.InstructionFile;
 						e.printStackTrace();
 					}
 				}
-				
-				System.out.println(strTextContents);
 			}
 			
 			//Outputs the current image to a file of their choosing
@@ -174,7 +174,23 @@ import Components.InstructionFile;
 			
 			//Quits the program after asking if the user would like to change anything
 			public void quit_menu() {
-				System.out.println("Quit-TODO");
+				if(GUIPanel.GetFrameTitle().substring(0, 1).equals("*")) {
+					 int result = JOptionPane.showConfirmDialog(null, "Do You Want To Save Before Quiting?", "Quit", JOptionPane.YES_NO_CANCEL_OPTION);
+					 
+					 switch(result) {
+					 	case 0:
+					 		save_file_as_menu();
+					 		System.exit(0);
+					 		break;
+					 	case 1:
+					 		System.exit(0);
+					 		break;
+					 	case 2:
+					 		return;
+					 }
+				} else {
+					System.exit(0);
+				}
 			}
 		}
 	}
