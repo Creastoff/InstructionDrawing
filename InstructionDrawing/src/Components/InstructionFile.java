@@ -46,6 +46,11 @@ public class InstructionFile {
 		GUIPanel.UpdateTitle(InstructionFile.file.getName()); //Update The Frame's Title
 	}
 	
+	public static void saveFile() {
+		System.out.println(file.getName());
+		GUIPanel.UpdateTitle(file.getName());
+	}
+	
 	//Updates the instructions variable with the textbox contents
 	public static void parseInstructions() {
 		strInstructions = InstructionPanel.getInstructionBox().getText().split("\n");

@@ -59,16 +59,17 @@ public class GUIPanel {
 	public static void UpdateTitle(String str) {
 		frame.setTitle(str + frameTitle);
 	}
+	
+	public static String GetFrameTitle() {
+		return frame.getTitle();
+	}
 
+	//Called When The Text Box Is Edited To Change The Title
 	public static void onTextBoxUpdate(String str) {
 		if(!(frame.getTitle().charAt(0) == '*')) {
 			frame.setTitle("*" + str);
 		}
 		else frame.setTitle(str);
-	}
-	
-	public static String GetFrameTitle() {
-		return frame.getTitle();
 	}
 	
 	public static int GetFrameWidth() {
