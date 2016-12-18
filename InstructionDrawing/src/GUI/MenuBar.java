@@ -7,7 +7,11 @@ import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 
 import javax.imageio.ImageIO;
+import javax.swing.BoxLayout;
+import javax.swing.JButton;
+import javax.swing.JDialog;
 import javax.swing.JFileChooser;
+import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
@@ -16,7 +20,7 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 import Components.InstructionFile;
 
 	//Dynamically Creates A Menu Bar Depending On What Is Inside The Below Array
-	public class MenuBar extends JMenuBar{
+	public class MenuBar extends JMenuBar {
 		private static final long serialVersionUID = 1L;
 		private static final String[][] arrMenuNames = 	{ 
 												{"File", "The File Menu, Allowing A User To; Load, Save, & Export Images", "Open File", "Save File", "Save File As", "Save Image", "Quit"},
@@ -42,6 +46,33 @@ import Components.InstructionFile;
 				}
 				
 				this.add(tempMenu);
+			}
+		}
+		
+		public class AboutDialog extends JDialog {
+			private static final long serialVersionUID = 1L;
+			
+			public AboutDialog() {
+				setLayout(new BoxLayout(getContentPane(), BoxLayout.Y_AXIS));
+				setTitle("About");
+				JLabel author = new JLabel("Written By Christopher Davey");
+				JLabel version = new JLabel("Version " + GUIPanel.getVersion());
+				JButton close = new JButton("Close");
+				close.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent event) {
+						dispose();
+					}
+				});
+				
+				author.setAlignmentX(0.5f);
+				version.setAlignmentX(0.5f);
+				close.setAlignmentX(0.5f);
+				
+				add(new JLabel(" ")); //Spacer
+				add(author);
+				add(version);
+				add(close);
+				setSize(300, 150);
 			}
 		}
 		
@@ -125,7 +156,8 @@ import Components.InstructionFile;
 
 			//Displays information about the program
 			public void about_menu() {
-				System.out.println("About-TODO");
+				AboutDialog about = new AboutDialog();
+				about.setVisible(true);
 			}
 			
 			//Quits the program after asking if the user would like to change anything

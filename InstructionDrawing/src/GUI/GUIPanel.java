@@ -19,6 +19,7 @@ public class GUIPanel {
 	private static GraphicsPanel drawingPanel = new GraphicsPanel();
 	private static InstructionPanel textPanel = new InstructionPanel();
 	public static final List<Instruction> lstValidInstructions = new ArrayList<Instruction>();
+	private static final double version = 1.0;
 	
 	public GUIPanel() {
 		lstValidInstructions.add(new Move());
@@ -85,5 +86,9 @@ public class GUIPanel {
 	
 	public static GraphicsPanel getDrawingPanel() {
 		return GUIPanel.drawingPanel;
+	}
+	
+	public static double getVersion() {
+		return version;
 	}
 }
