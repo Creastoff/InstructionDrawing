@@ -31,8 +31,9 @@ public class GUIPanel {
 		
 		//Initialise The Window Of The Program
 		frame.setSize(1500, 800);
-		frame.setResizable(false);
+		frame.setResizable(true);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setExtendedState( frame.getExtendedState()|JFrame.MAXIMIZED_BOTH );
 
 		//Create The Menu Bar
 		MenuBar menuBar = new MenuBar();
@@ -67,6 +68,14 @@ public class GUIPanel {
 	
 	public static String GetFrameTitle() {
 		return frame.getTitle();
+	}
+	
+	public static int GetFrameWidth() {
+		return frame.getWidth();
+	}
+	
+	public static int GetFrameHeight() {
+		return frame.getHeight();
 	}
 	
 	//Opens A Message Box

@@ -7,10 +7,10 @@ import javax.swing.JPanel;
 
 public class GraphicsPanel extends JPanel {
 	private static final long serialVersionUID = 1L;
-	private final static Color BACKGROUND_COL = Color.DARK_GRAY;
+	private final static Color BACKGROUND_COL = Color.BLACK;
 	private static Color color = Color.white;
 	private static int x = 0, y = 0;
-	private static int horizontalSize = 1000, verticalSize = 740;
+	private static int horizontalSize = 800, verticalSize = 800;
 	private static BufferedImage image;
 
 	public GraphicsPanel() {
