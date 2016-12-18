@@ -130,7 +130,7 @@ import Components.InstructionFile;
 				}
 			}
 			
-			//Outputs the current textbox to a file of their choosing
+			//Outputs the current textbox to a file of their choosing - overwrites by default
 			public void save_file_as_menu() {
 				fc.setFileFilter(txtFilter);
 				int saveValue = fc.showSaveDialog(null);
