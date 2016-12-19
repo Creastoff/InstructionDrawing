@@ -1,6 +1,9 @@
 package GUI;
 
 import java.awt.Dimension;
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.swing.BoxLayout;
 import javax.swing.JDialog;
 import javax.swing.JList;
@@ -8,20 +11,27 @@ import javax.swing.JTextArea;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
+import Instructions.Circle;
+import Instructions.Clear;
+import Instructions.Colour;
+import Instructions.DashedLine;
+import Instructions.Instruction;
+import Instructions.Line;
+import Instructions.Move;
+import Instructions.Oval;
+import Instructions.Rectangle;
+import Instructions.SolidCircle;
+import Instructions.SolidOval;
+import Instructions.SolidRectangle;
+import Instructions.Spiral;
+import Instructions.Text;
+
 //TODO: Write Specific Content For The Help Items
 
 public class HelpDialog extends JDialog {
 	private static final long serialVersionUID = 1L;
 	private static final String IntroductionText = "My 2nd Year University Assignment. Designed To Take User Input (Instructions) & Output Them As Graphics. By default it is supplied with a basic set of instructions.";
-	private static final String InstructionsText = "The program accepts the following instructions with the corresponding parameters:\n\n" +
-													"MOVE <X> <Y>: Moves the pen position to the given X & Y coordinates.\n" +
-													"LINE <X> <Y>: Draws a line from the current X & Y coordinates to the given X & Y coordinates.\n" +
-													"DASHED_LINE <X> <Y>: Draws a dashed line from the current X & Y coordinates to the given X & Y coordinates.\n" +
-													"CIRCLE <R>: Draws a clear circle at the current X & Y coordinates with the given radius.\n" +
-													"SOLID_CIRCLE <R>: Draws a solid circle at the current X & Y coordinates with the given radius.\n" +
-													"TEXT \"<TEXT-HERE>\": Draws text at the current X & Y coordinates.\n" +
-													"COLOUR <R> <G> <B>: Changes the current pen colour to the given Red, Green, & Blue Values.\n" + 
-													"CLEAR: Clears the drawing panel by drawing a rectangle over the current content.\n";
+	private static String InstructionsText = "The program accepts the following instructions with the corresponding parameters:\n\n";
 	private static final String ControlsText = "There are many controls that provide with an interface for the program:\n\n" +
 												"File:\n" + 
 													"      Open File: Open a previously made .txt file.\n" +
@@ -39,6 +49,27 @@ public class HelpDialog extends JDialog {
 	private InformationArea informationPanel = new InformationArea(IntroductionText); //Panel To Display Information
     
 	public HelpDialog() {
+		//List of instructions to add to the instruction information text
+		List<Instruction> lstValidInstructions = new ArrayList<Instruction>();
+		lstValidInstructions.add(new Move());
+		lstValidInstructions.add(new Line());
+		lstValidInstructions.add(new DashedLine());
+		lstValidInstructions.add(new Rectangle());
+		lstValidInstructions.add(new SolidRectangle());
+		lstValidInstructions.add(new Spiral());
+		lstValidInstructions.add(new Oval());
+		lstValidInstructions.add(new SolidOval());
+		lstValidInstructions.add(new Circle());
+		lstValidInstructions.add(new SolidCircle());
+		lstValidInstructions.add(new Text());
+		lstValidInstructions.add(new Colour());
+		lstValidInstructions.add(new Clear());
+		
+		for(Instruction instruction : lstValidInstructions) {
+			InstructionsText += instruction.getAbout();
+		}
+		
+		
 		informationPanel.setLineWrap(true);
 		setLayout(new BoxLayout(getContentPane(), BoxLayout.Y_AXIS));
 		setTitle("Help");
@@ -72,7 +103,7 @@ public class HelpDialog extends JDialog {
 	    //Add everything together
 		add(list);
 		add(informationPanel);
-		setSize(650, 400);
+		setSize(800, 400);
 		setResizable(false);
 	}
 	
