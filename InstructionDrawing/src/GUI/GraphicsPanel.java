@@ -42,13 +42,25 @@ public class GraphicsPanel extends JPanel {
 		g2d.setColor(GraphicsPanel.color);
 		
 		//set the stroke of the copy, not the original 
-	    Stroke dashed = new BasicStroke(1, BasicStroke.CAP_BUTT, BasicStroke.JOIN_BEVEL, 0, new float[]{9}, 0);
+	    Stroke dashed = new BasicStroke(2, BasicStroke.CAP_BUTT, BasicStroke.JOIN_BEVEL, 0, new float[]{9}, 0);
 	    g2d.setStroke(dashed);
 	       
 		g2d.drawLine(GraphicsPanel.x, GraphicsPanel.y, x, y);
 		this.setPos(x, y);
 	}
 
+	public void drawRectangle(int width, int height) {
+		Graphics g = getGraphic();
+		g.setColor(GraphicsPanel.color);
+		g.drawRect(GraphicsPanel.x, GraphicsPanel.y, width, height);
+	}
+	
+	public void drawSolidRectangle(int width, int height) {
+		Graphics g = getGraphic();
+		g.setColor(GraphicsPanel.color);
+		g.fillRect(GraphicsPanel.x, GraphicsPanel.y, width, height);
+	}
+	
 	public void drawCircle(int radius) {
 		Graphics g = getGraphic();
 		g.setColor(GraphicsPanel.color);
@@ -94,6 +106,15 @@ public class GraphicsPanel extends JPanel {
 		return image;
 	}
 	
+	public int getXCoordinate() {
+		return GraphicsPanel.x;
+	}
+	
+	public int getYCoordinate() {
+		return GraphicsPanel.y;
+	}
+	
+	//Check if the coordinates leave the image
 	public String checkCoordinates(int x, int y) {
 		String message = "OKAY";
 		
@@ -108,7 +129,17 @@ public class GraphicsPanel extends JPanel {
 		
 		return message;
 	}
+	
+	//Check if a shape is too large for the image
+	public String checkShapeSize(int width, int height) {
+		String message = "OKAY";
 
+		if(width < 0 || height < 0)
+			message = "Width & Height must be larger than 0";
+
+		return message;
+	}
+	
 	public static Dimension getGraphicsSize() {
 		return new Dimension(horizontalSize, verticalSize);
 	}
