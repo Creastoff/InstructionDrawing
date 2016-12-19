@@ -3,13 +3,14 @@ package Instructions;
 public class Instruction{
 	protected boolean isValid = true;
 	protected String ValidityReason = "";
-	private String instruction;
+	private String instruction, about;
 	private int numParameters;
 	protected int lineNumber;
 	
-	protected Instruction(String instruction, int numParameters) {
+	protected Instruction(String instruction, int numParameters, String about) {
 		this.instruction = instruction;
 		this.numParameters = numParameters;
+		this.about = about;
 	}
 	
 	public void execute() {
@@ -18,6 +19,10 @@ public class Instruction{
 	
 	public String getInstruction() {
 		return this.instruction;
+	}
+	
+	public String getAbout() {
+		return this.about;
 	}
 	
 	public int getNumParameters() {

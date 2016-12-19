@@ -7,10 +7,16 @@ import javax.swing.*;
 import Instructions.Circle;
 import Instructions.Clear;
 import Instructions.Colour;
+import Instructions.DashedLine;
 import Instructions.Instruction;
 import Instructions.Line;
 import Instructions.Move;
+import Instructions.Oval;
+import Instructions.Rectangle;
 import Instructions.SolidCircle;
+import Instructions.SolidOval;
+import Instructions.SolidRectangle;
+import Instructions.Spiral;
 import Instructions.Text;
 
 public class GUIPanel {
@@ -18,17 +24,10 @@ public class GUIPanel {
 	private static JFrame frame = new JFrame("Untitled" + frameTitle);
 	private static GraphicsPanel drawingPanel = new GraphicsPanel();
 	private static InstructionPanel textPanel = new InstructionPanel();
-	public static final List<Instruction> lstValidInstructions = new ArrayList<Instruction>();
 	private static final double version = 1.0;
 	
 	public GUIPanel() {
-		lstValidInstructions.add(new Move());
-		lstValidInstructions.add(new Line());
-		lstValidInstructions.add(new Circle());
-		lstValidInstructions.add(new SolidCircle());
-		lstValidInstructions.add(new Clear());
-		lstValidInstructions.add(new Colour());
-		lstValidInstructions.add(new Text());
+
 		
 		//Initialise The Window Of The Program
 		frame.setSize(1500, 800);

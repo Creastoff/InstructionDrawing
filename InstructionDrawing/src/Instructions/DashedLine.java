@@ -1,14 +1,16 @@
 package Instructions;
 
 public class DashedLine extends Instruction{
+	private static String instruction = "DASHED_LINE", about = "DASHED_LINE <X> <Y>: Draws a dashed line from the current X & Y coordinates to the given X & Y coordinates.\n";
+	private static int numParameters = 2;
 	private int x, y;
 	
 	public DashedLine() {
-		super("DASHED_LINE", 2);
+		super(instruction, numParameters, about);
 	}
 	
 	public DashedLine(String[] parameters, boolean isValid, String ValidityReason, int lineNumber) {
-		super("DASHED_LINE", 2);
+		super(instruction, numParameters, about);
 		this.isValid = isValid;
 		this.ValidityReason = ValidityReason;
 		this.lineNumber = lineNumber;

@@ -1,14 +1,16 @@
 package Instructions;
 
 public class Text extends Instruction{
+	private static String instruction = "TEXT", about = "TEXT \"<TEXT-HERE>\": Draws text at the current X & Y coordinates.\n";
+	private static int numParameters = 1;
 	private String text = "";
 	
 	public Text() {
-		super("TEXT", 1);
+		super(instruction, numParameters, about);
 	}
 	
 	public Text(String[] parameters, boolean isValid, String ValidityReason, int lineNumber) {
-		super("TEXT", 1);
+		super(instruction, numParameters, about);
 		this.isValid = isValid;
 		this.ValidityReason = ValidityReason;
 		this.lineNumber = lineNumber;

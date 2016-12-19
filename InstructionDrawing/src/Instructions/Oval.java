@@ -1,14 +1,16 @@
 package Instructions;
 
 public class Oval extends Instruction{
+	private static String instruction = "OVAL", about = "OVAL <WIDTH> <HEIGHT>: Draws an oval at the current X & Y coordinates with the given width and height.\n";
+	private static int numParameters = 2;
 	private int r1, r2;
 	
 	public Oval() {
-		super("OVAL", 2);
+		super(instruction, numParameters, about);
 	}
 	
 	public Oval(String[] parameters, boolean isValid, String ValidityReason, int lineNumber) {
-		super("OVAL", 2);
+		super(instruction, numParameters, about);
 		this.isValid = isValid;
 		this.ValidityReason = ValidityReason;
 		this.lineNumber = lineNumber;

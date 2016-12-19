@@ -1,14 +1,16 @@
 package Instructions;
 
 public class SolidOval extends Instruction{
+	private static String instruction = "SOLID_OVAL", about = "SOLID_OVAL <WIDTH> <HEIGHT>: Draws a solid oval at the current X & Y coordinates with the given width and height.\n";
+	private static int numParameters = 2;
 	private int r1, r2;
 	
 	public SolidOval() {
-		super("SOLID_OVAL", 2);
+		super(instruction, numParameters, about);
 	}
 	
 	public SolidOval(String[] parameters, boolean isValid, String ValidityReason, int lineNumber) {
-		super("SOLID_OVAL", 2);
+		super(instruction, numParameters, about);
 		this.isValid = isValid;
 		this.ValidityReason = ValidityReason;
 		this.lineNumber = lineNumber;

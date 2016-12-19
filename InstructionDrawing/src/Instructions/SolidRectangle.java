@@ -1,14 +1,16 @@
 package Instructions;
 
 public class SolidRectangle extends Instruction{
+	private static String instruction = "SOLID_RECTANGLE", about = "SOLID_RECTANGLE <X> <Y>: Draws a solid rectangle from the current X & Y coordinates with the given width and height.\n";
+	private static int numParameters = 2;
 	private int width, height;
 	
 	public SolidRectangle() {
-		super("SOLID_RECTANGLE", 2);
+		super(instruction, numParameters, about);
 	}
 	
 	public SolidRectangle(String[] parameters, boolean isValid, String ValidityReason, int lineNumber) {
-		super("SOLID_RECTANGLE", 2);
+		super(instruction, numParameters, about);
 		this.isValid = isValid;
 		this.ValidityReason = ValidityReason;
 		this.lineNumber = lineNumber;

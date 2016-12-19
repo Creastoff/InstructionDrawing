@@ -1,14 +1,16 @@
 package Instructions;
 
 public class Rectangle extends Instruction{
+	private static String instruction = "RECTANGLE", about = "RECTANGLE <X> <Y>: Draws a rectangle from the current X & Y coordinates with the given width and height.\n";
+	private static int numParameters = 2;
 	private int width, height;
 	
 	public Rectangle() {
-		super("RECTANGLE", 2);
+		super(instruction, numParameters, about);
 	}
 	
 	public Rectangle(String[] parameters, boolean isValid, String ValidityReason, int lineNumber) {
-		super("RECTANGLE", 2);
+		super(instruction, numParameters, about);
 		this.isValid = isValid;
 		this.ValidityReason = ValidityReason;
 		this.lineNumber = lineNumber;

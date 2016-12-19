@@ -1,14 +1,16 @@
 package Instructions;
 
 public class Spiral extends Instruction{
+	private static String instruction = "SPIRAL", about = "SPIRAL <WIDTH> <HEIGHT> <DENSITY> <SIZE>: Draws a spiral from the current X & Y coordinates with the given width and height.\n		The line density is how close each new line is to the last and the size is for how long it should spiral for.\n\n";
+	private static int numParameters = 4;
 	private int width, height, lineDensity, size;
 	
 	public Spiral() {
-		super("SPIRAL", 4);
+		super(instruction, numParameters, about);
 	}
 	
 	public Spiral(String[] parameters, boolean isValid, String ValidityReason, int lineNumber) {
-		super("SPIRAL", 4);
+		super(instruction, numParameters, about);
 		this.isValid = isValid;
 		this.ValidityReason = ValidityReason;
 		this.lineNumber = lineNumber;

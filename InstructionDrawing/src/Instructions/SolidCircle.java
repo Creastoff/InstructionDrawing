@@ -1,14 +1,16 @@
 package Instructions;
 
 public class SolidCircle extends Instruction{
+	private static String instruction = "SOLID_CIRCLE", about = "SOLID_CIRCLE <R>: Draws a solid circle at the current X & Y coordinates with the given radius.\n";
+	private static int numParameters = 1;
 	private int r;
 	
 	public SolidCircle() {
-		super("SOLID_CIRCLE", 1);
+		super(instruction, numParameters, about);
 	}
 	
 	public SolidCircle(String[] parameters, boolean isValid, String ValidityReason, int lineNumber) {
-		super("SOLID_CIRCLE", 1);
+		super(instruction, numParameters, about);
 		this.isValid = isValid;
 		this.ValidityReason = ValidityReason;
 		this.lineNumber = lineNumber;

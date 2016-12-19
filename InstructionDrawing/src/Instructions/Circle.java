@@ -1,14 +1,16 @@
 package Instructions;
 
 public class Circle extends Instruction{
+	private static String instruction = "CIRCLE", about = "CIRCLE <R>: Draws a clear circle at the current X & Y coordinates with the given radius.\n";
+	private static int numParameters = 1;
 	private int r;
 	
 	public Circle() {
-		super("CIRCLE", 1);
+		super(instruction, numParameters, about);
 	}
 	
 	public Circle(String[] parameters, boolean isValid, String ValidityReason, int lineNumber) {
-		super("CIRCLE", 1);
+		super(instruction, numParameters, about);
 		this.isValid = isValid;
 		this.ValidityReason = ValidityReason;
 		this.lineNumber = lineNumber;

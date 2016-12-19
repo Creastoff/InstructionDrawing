@@ -1,14 +1,16 @@
 package Instructions;
 
 public class Line extends Instruction{
+	private static String instruction = "LINE", about = "LINE <X> <Y>: Draws a line from the current X & Y coordinates to the given X & Y coordinates.\n";
+	private static int numParameters = 2;
 	private int x, y;
 	
 	public Line() {
-		super("LINE", 2);
+		super(instruction, numParameters, about);
 	}
 	
 	public Line(String[] parameters, boolean isValid, String ValidityReason, int lineNumber) {
-		super("LINE", 2);
+		super(instruction, numParameters, about);
 		this.isValid = isValid;
 		this.ValidityReason = ValidityReason;
 		this.lineNumber = lineNumber;

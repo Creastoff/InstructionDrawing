@@ -1,15 +1,17 @@
 package Instructions;
 import java.awt.Color;
 
-public class Colour extends Instruction{	
+public class Colour extends Instruction{
+	private static String instruction = "COLOUR", about = "COLOUR <R> <G> <B>: Changes the current pen colour to the given Red, Green, & Blue Values.\n";;
+	private static int numParameters = 3;
 	private Color colour;
 	
 	public Colour() {
-		super("COLOUR", 3);
+		super(instruction, numParameters, about);
 	}
 
 	public Colour(String[] parameters, boolean isValid, String ValidityReason, int lineNumber) {
-		super("COLOUR", 3);
+		super(instruction, numParameters, about);
 		this.isValid = isValid;
 		this.ValidityReason = ValidityReason;
 		this.lineNumber = lineNumber;

@@ -16,8 +16,10 @@ import Instructions.Instruction;
 import Instructions.InvalidInstruction;
 import Instructions.Line;
 import Instructions.Move;
+import Instructions.Oval;
 import Instructions.Rectangle;
 import Instructions.SolidCircle;
+import Instructions.SolidOval;
 import Instructions.SolidRectangle;
 import Instructions.Spiral;
 import Instructions.Text;
@@ -95,6 +97,12 @@ public class InstructionFile {
 					break;
 				case "SPIRAL":
 					executableInstruction = Spiral.Check(instructionLine, lineNumber);
+					break;
+				case "OVAL":
+					executableInstruction = Oval.Check(instructionLine, lineNumber);
+					break;
+				case "SOLID_OVAL":
+					executableInstruction = SolidOval.Check(instructionLine, lineNumber);
 					break;
 				case "CIRCLE":
 					executableInstruction = Circle.Check(instructionLine, lineNumber);

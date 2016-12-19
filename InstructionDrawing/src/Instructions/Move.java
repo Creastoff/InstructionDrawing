@@ -1,14 +1,16 @@
 package Instructions;
 
 public class Move extends Instruction{
+	private static String instruction = "MOVE", about = "";
+	private static int numParameters = 2;
 	private int x, y;
 	
 	public Move() {
-		super("MOVE", 2);
+		super(instruction, numParameters, about);
 	}
 	
 	public Move(String[] parameters, boolean isValid, String ValidityReason, int lineNumber) {
-		super("MOVE", 2);
+		super(instruction, numParameters, about);
 		this.isValid = isValid;
 		this.ValidityReason = ValidityReason;
 		this.lineNumber = lineNumber;

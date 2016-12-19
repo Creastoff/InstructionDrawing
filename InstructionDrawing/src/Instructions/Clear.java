@@ -1,13 +1,15 @@
 package Instructions;
 
 public class Clear extends Instruction{
-
+	private static String instruction = "CLEAR", about = "CLEAR: Clears the drawing panel by drawing a rectangle over the current content.\n";;
+	private static int numParameters = 0;
+	
 	public Clear() {
-		super("CLEAR", 0);
+		super(instruction, numParameters, about);
 	}
 
 	public Clear(boolean isValid, String ValidityReason, int lineNumber) {
-		super("CLEAR", 0);
+		super(instruction, numParameters, about);
 		this.isValid = isValid;
 		this.ValidityReason = ValidityReason;
 		this.lineNumber = lineNumber;
