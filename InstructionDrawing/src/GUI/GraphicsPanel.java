@@ -48,7 +48,48 @@ public class GraphicsPanel extends JPanel {
 		g2d.drawLine(GraphicsPanel.x, GraphicsPanel.y, x, y);
 		this.setPos(x, y);
 	}
+	
+	public void drawRectangle(int width, int height) {
+		Graphics g = getGraphic();
+		g.setColor(GraphicsPanel.color);
+		g.drawRect(GraphicsPanel.x, GraphicsPanel.y, width, height);
+	}
+	
+	public void drawSolidRectangle(int width, int height) {
+		Graphics g = getGraphic();
+		g.setColor(GraphicsPanel.color);
+		g.fillRect(GraphicsPanel.x, GraphicsPanel.y, width, height);
+	}
 
+	//Draws spirals at the current coordinate - sourced from:
+	//http://stackoverflow.com/questions/29638733/java-draw-a-circular-spiral-using-drawarc
+	public void drawSpiral(int paramWidth, int paramHeight, int paramGap, int paramSize) {
+		Graphics g = getGraphic();
+		g.setColor(GraphicsPanel.color);
+		
+		//Draws The Spiral
+        int width = paramWidth;
+        int height = paramHeight;
+        int startAngle = 0;
+        int arcAngle = 180;
+        int depth = paramGap;
+        
+        for (int i = 0; i < paramSize; i++) {
+            if (i % 2 == 0) {
+            	GraphicsPanel.y = GraphicsPanel.y - depth;
+                width = width + 2 * depth;
+                height = height + 2 * depth;
+                g.drawArc(GraphicsPanel.x, GraphicsPanel.y, width, height, startAngle, -arcAngle);
+            } else {
+            	GraphicsPanel.x = GraphicsPanel.x - 2 * depth;
+                GraphicsPanel.y = GraphicsPanel.y - depth;
+                width = width + 2 * depth;
+                height = height + 2 * depth;
+                g.drawArc(GraphicsPanel.x, GraphicsPanel.y, width, height, startAngle, arcAngle);
+            }
+        }
+	}
+	
 	public void drawCircle(int radius) {
 		Graphics g = getGraphic();
 		g.setColor(GraphicsPanel.color);
@@ -94,6 +135,20 @@ public class GraphicsPanel extends JPanel {
 		return image;
 	}
 	
+	public String checkCoordinates(int x, int y) {
+		String message = "OKAY";
+		
+		if((x < 0 || x > horizontalSize) && (y < 0 || y > verticalSize)) {
+			message = "The x coordinate (" + x + ") must be larger than 0 and less than " + horizontalSize + ".\n"
+					+ "The y coordinate (" + y + ") must be larger than 0 and smaller than " + verticalSize + ".";
+		} else if(x < 0 || x > horizontalSize) {
+			message = "The x coordinate (" + x + ") must be larger than 0 and less than " + horizontalSize + ".\n";
+		} else if(y < 0 || y > verticalSize) {
+			message = "The y coordinate (" + y + ") must be larger than 0 and smaller than " + verticalSize + ".";
+		}
+		return message;
+	}
+	
 	//Check if a shape is too large for the image
 	public String checkShapeSize(int width, int height) {
 		String message = "OKAY";
@@ -115,6 +170,7 @@ public class GraphicsPanel extends JPanel {
 		*/
 		return message;
 	}
+
 
 	public static Dimension getGraphicsSize() {
 		return new Dimension(horizontalSize, verticalSize);

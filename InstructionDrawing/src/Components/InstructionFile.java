@@ -16,7 +16,10 @@ import Instructions.Instruction;
 import Instructions.InvalidInstruction;
 import Instructions.Line;
 import Instructions.Move;
+import Instructions.Rectangle;
 import Instructions.SolidCircle;
+import Instructions.SolidRectangle;
+import Instructions.Spiral;
 import Instructions.Text;
 
 public class InstructionFile {
@@ -83,6 +86,15 @@ public class InstructionFile {
 					break;
 				case "DASHED_LINE":
 					executableInstruction = DashedLine.Check(instructionLine, lineNumber);
+					break;
+				case "RECTANGLE":
+					executableInstruction = Rectangle.Check(instructionLine, lineNumber);
+					break;
+				case "SOLID_RECTANGLE":
+					executableInstruction = SolidRectangle.Check(instructionLine, lineNumber);
+					break;
+				case "SPIRAL":
+					executableInstruction = Spiral.Check(instructionLine, lineNumber);
 					break;
 				case "CIRCLE":
 					executableInstruction = Circle.Check(instructionLine, lineNumber);
