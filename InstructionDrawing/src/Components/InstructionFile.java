@@ -28,27 +28,7 @@ public class InstructionFile {
 	
 	public InstructionFile(File file) {
 		InstructionFile.file = file;
-
-		//Sets the instructions array to the file contents
-		List<String> lstLines = new ArrayList<String>();
-		
-		try {
-			BufferedReader reader = new BufferedReader(new FileReader(InstructionFile.file));
-			String line;
-			
-			while((line = reader.readLine()) != null) {
-				lstLines.add(line);
-			}
-			
-			reader.close();
-		} catch (IOException ex) {
-			ex.printStackTrace();
-		} finally {
-			strInstructions = lstLines.toArray(new String[]{});
-		}
-		
-		GUI.InstructionPanel.UpdateTextContents(strInstructions); //Update The Text Box Content
-		GUIPanel.UpdateTitle(InstructionFile.file.getName()); //Update The Frame's Title
+		resetText();
 	}
 	
 	public static void resetText() {
