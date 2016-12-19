@@ -21,23 +21,25 @@ import Components.InstructionFile;
 	public class MenuBar extends JMenuBar {
 		private static final long serialVersionUID = 1L;
 		private static final String[][] arrMenuNames = 	{ 
-												{"File", "The File Menu, Allowing A User To; Load, Save, & Export Images", "Open File", "Save File As", "Save Image", "Quit"},
-												{"Help", "The Help Menu, Displaying Information About The Program & How To Use It", "About", "Help"}
+												{"File", "The File Menu, Allowing A User To; Load, Save, & Export Images", "F", "Open File", "O", "Save File As", "S", "Save Image", "I", "Quit", "Q"},
+												{"Help", "The Help Menu, Displaying Information About The Program & How To Use It", "H", "About", "A", "Help", "H"}
 											};
 
 		public MenuBar() {
+			char mnemonic;
 			//Creates A Temporary Menu Item & Corresponding Sub-Items Which Is Added To The Menu Bar
 			for(int i = 0; i < arrMenuNames.length; i++) {
 				JMenu tempMenu = new JMenu(arrMenuNames[i][0]);
-				//TODO - Create A Function Which Returns A Suitable Mnemonic
-				//tempMenu.setMnemonic();
 				tempMenu.getAccessibleContext().setAccessibleDescription(arrMenuNames[i][1]);
+				mnemonic = arrMenuNames[i][2].charAt(0);
+				tempMenu.setMnemonic(mnemonic);
 				
 				//Creates Sub-Items For The Menu Bar Item
-				for(int j = 2; j < arrMenuNames[i].length; j++) {
-					//TODO - Create A Function Which Returns A Suitable Mnemonic
+				for(int j = 3; j < arrMenuNames[i].length; j+=2) {
 					JMenuItem menuItem = new JMenuItem(arrMenuNames[i][j]);
 					menuItem.getAccessibleContext().setAccessibleDescription(arrMenuNames[i][j]);
+					mnemonic = arrMenuNames[i][j+1].charAt(0);
+					menuItem.setMnemonic(mnemonic);
 					menuItem.addActionListener(new MenuActionListener());
 					menuItem.setEnabled(true);
 					

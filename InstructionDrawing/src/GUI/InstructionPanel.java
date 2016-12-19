@@ -24,7 +24,7 @@ public class InstructionPanel extends JPanel{
 	private static JPanel bottomPanel = new JPanel();
 	private static JPanel bottomRightPanel = new JPanel();
 	private static JLabel lblGraphicsWidth = new JLabel(), lblGraphicsHeight = new JLabel();
-	private static JTextArea txtInstructions = new JTextArea("LINE 250 250", 43, 30);
+	private static JTextArea txtInstructions = new JTextArea("MOVE 100 200\nCOLOUR 255 0 0\nTEXT \"This text should not be seen!\"\nCLEAR\nCOLOUR 255 255 255\nTEXT \"This is WHITE text that should be seen!\"\nMOVE 100 220\nCOLOUR 0 255 255\nLINE 300 220\nCOLOUR 255 255 0\nSOLID_CIRCLE 10\nMOVE 100 225\nLINE 300 225\nCIRCLE 10", 43, 30);
 	private static String[] arrButtonTitles = {"Draw", "Clear Canvas", "Clear Text", "Reset Text"};
 	
 	/*

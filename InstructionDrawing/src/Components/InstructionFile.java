@@ -6,8 +6,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.swing.JDialog;
-
 import GUI.GUIPanel;
 import GUI.InstructionPanel;
 import Instructions.Circle;
