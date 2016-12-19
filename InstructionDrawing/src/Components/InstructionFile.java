@@ -5,6 +5,9 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+
+import javax.swing.JDialog;
+
 import GUI.GUIPanel;
 import GUI.InstructionPanel;
 import Instructions.Circle;
@@ -70,7 +73,7 @@ public class InstructionFile {
 			
 			GUI.InstructionPanel.UpdateTextContents(strInstructions); //Update The Text Box Content
 			GUIPanel.UpdateTitle(InstructionFile.file.getName()); //Update The Frame's Title
-		} else System.out.println("Please load a text file first");
+		} else GUIPanel.ShowMessage("Please Select A File Before Attempting To Reset", "Please Select A File");
 	}
 	
 	public static void saveFile() {
