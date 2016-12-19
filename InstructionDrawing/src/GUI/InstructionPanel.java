@@ -1,5 +1,6 @@
 package GUI;
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.lang.reflect.InvocationTargetException;
@@ -7,6 +8,7 @@ import java.lang.reflect.InvocationTargetException;
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
@@ -18,7 +20,10 @@ import Components.InstructionFile;
 
 public class InstructionPanel extends JPanel{
 	private static final long serialVersionUID = 1L;
-	private static JPanel instructionSubPanel = new JPanel();
+	private static JPanel topPanel = new JPanel();
+	private static JPanel bottomPanel = new JPanel();
+	private static JPanel bottomRightPanel = new JPanel();
+	private static JLabel lblGraphicsWidth = new JLabel(), lblGraphicsHeight = new JLabel();
 	private static JTextArea txtInstructions = new JTextArea("LINE 250 250", 43, 30);
 	private static String[] arrButtonTitles = {"Draw", "Clear Canvas", "Clear Text"};
 	
@@ -29,6 +34,11 @@ public class InstructionPanel extends JPanel{
 	 * 			Button to clear the textbox
 	 */
 	public InstructionPanel() {
+		//Label
+		Dimension graphicsSize = GraphicsPanel.getGraphicsSize();
+		lblGraphicsWidth.setText("Horizontal Maximum: " + graphicsSize.getWidth());
+		lblGraphicsHeight.setText("Vertical Maximum: " + graphicsSize.getHeight());
+		
 		//Text Box
 		Border border = BorderFactory.createLineBorder(Color.black);
 		txtInstructions.setBorder(border);
@@ -39,14 +49,24 @@ public class InstructionPanel extends JPanel{
 		for(String str : arrButtonTitles) {
 			JButton temp = new JButton(str);
 			temp.addActionListener(new ButtonListener());
-			instructionSubPanel.add(temp);
+			bottomRightPanel.add(temp);
 		}
 		
+		//Label Panel
+		topPanel.add(lblGraphicsWidth);
+		topPanel.add(lblGraphicsHeight);
+		topPanel.setLayout(new BoxLayout(topPanel, BoxLayout.Y_AXIS));
+		
+		//TextBox & Button Panel
+		bottomPanel.add(scrollPane);
+		bottomPanel.add(bottomRightPanel);
+		bottomPanel.setLayout(new BoxLayout(bottomPanel, BoxLayout.X_AXIS));
+		bottomRightPanel.setLayout(new BoxLayout(bottomRightPanel, BoxLayout.Y_AXIS));
+		
 		//Added Together
-		this.add(scrollPane);
-		instructionSubPanel.setLayout(new BoxLayout(instructionSubPanel, BoxLayout.PAGE_AXIS));
-		this.add(instructionSubPanel);
-		this.setLayout(new BoxLayout(this, BoxLayout.X_AXIS));
+		add(topPanel);
+		add(bottomPanel);
+		setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 	}
 	
 	public static void UpdateTextContents(String[] instructions) {

@@ -10,6 +10,7 @@ import GUI.InstructionPanel;
 import Instructions.Circle;
 import Instructions.Clear;
 import Instructions.Colour;
+import Instructions.DashedLine;
 import Instructions.Instruction;
 import Instructions.InvalidInstruction;
 import Instructions.Line;
@@ -66,11 +67,14 @@ public class InstructionFile {
 			
 			//Create a new object based on the instruction
 			switch(instructionLine[0]) {
+				case "MOVE":
+					executableInstruction = Move.Check(instructionLine, lineNumber);
+					break;
 				case "LINE":
 					executableInstruction = Line.Check(instructionLine, lineNumber);
 					break;
-				case "MOVE":
-					executableInstruction = Move.Check(instructionLine, lineNumber);
+				case "DASHED_LINE":
+					executableInstruction = DashedLine.Check(instructionLine, lineNumber);
 					break;
 				case "CIRCLE":
 					executableInstruction = Circle.Check(instructionLine, lineNumber);

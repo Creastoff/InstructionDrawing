@@ -12,7 +12,10 @@ import javax.swing.event.ListSelectionListener;
 
 public class HelpDialog extends JDialog {
 	private static final long serialVersionUID = 1L;
-	InformationArea informationPanel = new InformationArea("My 2nd Year University Assignment. Designed To Take User Input (Instructions) & Output Them As Graphics"); //Panel To Display Information
+	private static final String IntroductionText = "My 2nd Year University Assignment. Designed To Take User Input (Instructions) & Output Them As Graphics";
+	private static final String InstructionsText = "Instructions";
+	private static final String ControlsText = "Controls";
+	private InformationArea informationPanel = new InformationArea(IntroductionText); //Panel To Display Information
     
 	public HelpDialog() {
 		setLayout(new BoxLayout(getContentPane(), BoxLayout.Y_AXIS));
@@ -32,13 +35,13 @@ public class HelpDialog extends JDialog {
 				
 				switch(value) {
 					case "Introduction":
-						informationPanel.setText("My 2nd Year University Assignment. Designed To Take User Input (Instructions) & Output Them As Graphics");
+						informationPanel.setText(IntroductionText);
 						break;
 					case "Instructions":
-						informationPanel.setText("Instructions");
+						informationPanel.setText(InstructionsText);
 						break;
 					case "Controls":
-						informationPanel.setText("Controls");
+						informationPanel.setText(ControlsText);
 						break;
 				}
 			}

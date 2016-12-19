@@ -1,7 +1,10 @@
 package GUI;
+import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.Stroke;
 import java.awt.image.BufferedImage;
 import javax.swing.JPanel;
 
@@ -31,6 +34,18 @@ public class GraphicsPanel extends JPanel {
 		Graphics g = getGraphic();
 		g.setColor(GraphicsPanel.color);
 		g.drawLine(GraphicsPanel.x, GraphicsPanel.y, x, y);
+		this.setPos(x, y);
+	}
+	
+	public void drawDashedLine(int x, int y) {
+		Graphics2D g2d = (Graphics2D) getGraphic().create();
+		g2d.setColor(GraphicsPanel.color);
+		
+		//set the stroke of the copy, not the original 
+	    Stroke dashed = new BasicStroke(1, BasicStroke.CAP_BUTT, BasicStroke.JOIN_BEVEL, 0, new float[]{9}, 0);
+	    g2d.setStroke(dashed);
+	       
+		g2d.drawLine(GraphicsPanel.x, GraphicsPanel.y, x, y);
 		this.setPos(x, y);
 	}
 
@@ -92,5 +107,9 @@ public class GraphicsPanel extends JPanel {
 		}
 		
 		return message;
+	}
+
+	public static Dimension getGraphicsSize() {
+		return new Dimension(horizontalSize, verticalSize);
 	}
 }
