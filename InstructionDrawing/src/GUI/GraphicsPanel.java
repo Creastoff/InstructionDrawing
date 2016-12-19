@@ -105,7 +105,6 @@ public class GraphicsPanel extends JPanel {
 		} else if(y < 0 || y > verticalSize) {
 			message = "The y coordinate (" + y + ") must be larger than 0 and smaller than " + verticalSize + ".";
 		}
-		
 		return message;
 	}
 
