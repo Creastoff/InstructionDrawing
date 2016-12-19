@@ -94,17 +94,25 @@ public class GraphicsPanel extends JPanel {
 		return image;
 	}
 	
-	public String checkCoordinates(int x, int y) {
+	//Check if a shape is too large for the image
+	public String checkShapeSize(int width, int height) {
 		String message = "OKAY";
+		//int resultantWidth = x + width;
+		//int resultantHeight = y + height;
 		
-		if((x < 0 || x > horizontalSize) && (y < 0 || y > verticalSize)) {
-			message = "The x coordinate (" + x + ") must be larger than 0 and less than " + horizontalSize + ".\n"
-					+ "The y coordinate (" + y + ") must be larger than 0 and smaller than " + verticalSize + ".";
-		} else if(x < 0 || x > horizontalSize) {
-			message = "The x coordinate (" + x + ") must be larger than 0 and less than " + horizontalSize + ".\n";
-		} else if(y < 0 || y > verticalSize) {
-			message = "The y coordinate (" + y + ") must be larger than 0 and smaller than " + verticalSize + ".";
+		if(width < 0 || height < 0)
+			message = "Width & Height must be larger than 0";
+		/*
+		else if((resultantWidth > horizontalSize) && (resultantHeight > verticalSize)) {
+			message = "The width(" + width + ") and x coordinate(" + GraphicsPanel.x + ") must result (" + resultantWidth + ") in a number less than " + horizontalSize + ".\n"
+					+ "The height(" + height + ") and y coordinate(" + GraphicsPanel.y + ") must result (" + resultantHeight + ") in a number less than " + verticalSize + ".";
+		} else if(resultantWidth > horizontalSize) {
+			message = "The width(" + width + ") and x coordinate(" + GraphicsPanel.x + ") must result (" + resultantWidth + ") in a number less than " + horizontalSize + ".\n";
+		} else if(resultantHeight > verticalSize) {
+			System.out.println(resultantHeight);
+			message = "The height(" + height + ") and y coordinate(" + y + ") must result (" + resultantHeight + ") in a number less than " + verticalSize + ".";
 		}
+		*/
 		return message;
 	}
 
