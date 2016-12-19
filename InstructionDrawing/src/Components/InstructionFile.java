@@ -90,14 +90,14 @@ public class InstructionFile {
 				case "SOLID_CIRCLE":
 					executableInstruction = SolidCircle.Check(instructionLine, lineNumber);
 					break;
-				case "CLEAR":
-					executableInstruction = Clear.Check(instructionLine, lineNumber);
+				case "TEXT":
+					executableInstruction = Text.Check(instructionLine, lineNumber);
 					break;
 				case "COLOUR":
 					executableInstruction = Colour.Check(instructionLine, lineNumber);
 					break;
-				case "TEXT":
-					executableInstruction = Text.Check(instructionLine, lineNumber);
+				case "CLEAR":
+					executableInstruction = Clear.Check(instructionLine, lineNumber);
 					break;
 				default:
 					executableInstruction = new InvalidInstruction(instructionLine, lineNumber);

@@ -22,7 +22,7 @@ import Components.InstructionFile;
 		private static final long serialVersionUID = 1L;
 		private static final String[][] arrMenuNames = 	{ 
 												{"File", "The File Menu, Allowing A User To; Load, Save, & Export Images", "F", "Open File", "O", "Save File As", "S", "Save Image", "I", "Quit", "Q"},
-												{"Help", "The Help Menu, Displaying Information About The Program & How To Use It", "H", "About", "A", "Help", "H"}
+												{"Help", "The Help Menu, Displaying Information About The Program & How To Use It", "H", "About", "A", "Help Contents", "H"}
 											};
 
 		public MenuBar() {
@@ -143,7 +143,7 @@ import Components.InstructionFile;
 			}
 			
 			//Displays information about the program
-			public void help_menu() {
+			public void help_contents_menu() {
 				HelpDialog help = new HelpDialog();
 				help.setVisible(true);
 			}
