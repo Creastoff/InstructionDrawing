@@ -25,7 +25,7 @@ public class InstructionPanel extends JPanel{
 	private static JPanel bottomRightPanel = new JPanel();
 	private static JLabel lblGraphicsWidth = new JLabel(), lblGraphicsHeight = new JLabel();
 	private static JTextArea txtInstructions = new JTextArea("LINE 250 250", 43, 30);
-	private static String[] arrButtonTitles = {"Draw", "Clear Canvas", "Clear Text"};
+	private static String[] arrButtonTitles = {"Draw", "Clear Canvas", "Clear Text", "Reset Text"};
 	
 	/*
 	 * Creates; Textbox with border & scrollbar to be shown when necessary
@@ -140,6 +140,10 @@ public class InstructionPanel extends JPanel{
 		
 		public void ClearText() {
 			InstructionPanel.txtInstructions.setText("");
+		}
+		
+		public void ResetText() {
+			InstructionFile.resetText();
 		}
 	}
 }

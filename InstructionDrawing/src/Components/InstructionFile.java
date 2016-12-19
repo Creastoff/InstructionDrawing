@@ -21,6 +21,7 @@ import Instructions.Text;
 public class InstructionFile {
 	private static File file;
 	private static String[] strInstructions;
+	private static String[] strInstructionsAndErrors;
 	
 	public InstructionFile(File file) {
 		InstructionFile.file = file;
@@ -47,6 +48,31 @@ public class InstructionFile {
 		GUIPanel.UpdateTitle(InstructionFile.file.getName()); //Update The Frame's Title
 	}
 	
+	public static void resetText() {
+		if(file != null) {
+			//Sets the instructions array to the file contents
+			List<String> lstLines = new ArrayList<String>();
+			
+			try {
+				BufferedReader reader = new BufferedReader(new FileReader(InstructionFile.file));
+				String line;
+				
+				while((line = reader.readLine()) != null) {
+					lstLines.add(line);
+				}
+				
+				reader.close();
+			} catch (IOException ex) {
+				ex.printStackTrace();
+			} finally {
+				strInstructions = lstLines.toArray(new String[]{});
+			}
+			
+			GUI.InstructionPanel.UpdateTextContents(strInstructions); //Update The Text Box Content
+			GUIPanel.UpdateTitle(InstructionFile.file.getName()); //Update The Frame's Title
+		} else System.out.println("Please load a text file first");
+	}
+	
 	public static void saveFile() {
 		System.out.println(file.getName());
 		GUIPanel.UpdateTitle(file.getName());
@@ -55,6 +81,7 @@ public class InstructionFile {
 	//Updates the instructions variable with the textbox contents
 	public static void parseInstructions() {
 		strInstructions = InstructionPanel.getInstructionBox().getText().split("\n");
+		strInstructionsAndErrors = strInstructions;
 		//Used to collect any errors & execute instructions
 		Instruction[] instructions = new Instruction[strInstructions.length];
 		int lineNumber = 1;
@@ -103,19 +130,16 @@ public class InstructionFile {
 		List<String> lstErrors = new ArrayList<String>();		
 		for(Instruction instruction : instructions) {
 			if(!instruction.getIsValid()) {
+				strInstructionsAndErrors[instruction.getLineNumber() - 1] += ": " + instruction.getValidityReason();
 				lstErrors.add("Line " + instruction.getLineNumber() + ": " + instruction.getValidityReason());
 			}
 		}
 		
 		//If there are errors then output them
-		if(lstErrors.size() != 0) {
-			System.out.println("Outputing");
-			for(String str : lstErrors) {
-				System.out.println(str);
-			}
+		if(lstErrors.size() != 0) {			
+			InstructionPanel.UpdateTextContents(strInstructionsAndErrors);
 		}//If there aren't any errors then execute the instructions instead
 		else {
-			System.out.println("Executing");
 			for(Instruction instruction : instructions) {
 				instruction.execute();
 			}
