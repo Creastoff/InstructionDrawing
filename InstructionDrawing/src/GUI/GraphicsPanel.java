@@ -90,6 +90,18 @@ public class GraphicsPanel extends JPanel {
         }
 	}
 	
+	public void drawOval(int r1, int r2) {
+		Graphics g = getGraphic();
+		g.setColor(GraphicsPanel.color);
+		g.drawOval(GraphicsPanel.x, GraphicsPanel.y, r1, r2);
+	}
+	
+	public void drawSolidOval(int r1, int r2) {
+		Graphics g = getGraphic();
+		g.setColor(GraphicsPanel.color);
+		g.fillOval(GraphicsPanel.x, GraphicsPanel.y, r1, r2);
+	}
+	
 	public void drawCircle(int radius) {
 		Graphics g = getGraphic();
 		g.setColor(GraphicsPanel.color);

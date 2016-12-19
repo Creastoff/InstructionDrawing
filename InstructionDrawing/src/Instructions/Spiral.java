@@ -4,11 +4,11 @@ public class Spiral extends Instruction{
 	private int width, height, lineDensity, size;
 	
 	public Spiral() {
-		super("SOLID_RECTANGLE", 4);
+		super("SPIRAL", 4);
 	}
 	
 	public Spiral(String[] parameters, boolean isValid, String ValidityReason, int lineNumber) {
-		super("SOLID_RECTANGLE", 4);
+		super("SPIRAL", 4);
 		this.isValid = isValid;
 		this.ValidityReason = ValidityReason;
 		this.lineNumber = lineNumber;

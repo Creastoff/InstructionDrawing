@@ -52,6 +52,9 @@ public class GUIPanel {
 
 		//Joining Everything
 		frame.add(mainPanel);
+	}
+	
+	public void setVisible() {
 		frame.setVisible(true);
 	}
 	
