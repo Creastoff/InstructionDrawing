@@ -134,6 +134,98 @@ public class GraphicsPanel extends JPanel {
 		g.fillPolygon(polygon);
 	}
 	
+	public void drawTetrisL(int side, int width, int height) {
+		Graphics g = getGraphic();
+		g.setColor(GraphicsPanel.color);
+		int x = GraphicsPanel.x, y = GraphicsPanel.y;
+		int[] Xcoordinates = new int[6];
+		int[] Ycoordinates = new int[6];
+		
+		switch(side) {
+			//__
+			//| |
+			//| |_
+			//|___|
+			case 0:
+				//X Coordinates
+				Xcoordinates[0] = x;
+				Xcoordinates[1] = x + width;
+				Xcoordinates[2] = x + width;
+				Xcoordinates[3] = x + width / 2;
+				Xcoordinates[4] = x + width / 2;
+				Xcoordinates[5] = x;
+				//Y Coordinates
+				Ycoordinates[0] = y;
+				Ycoordinates[1] = y;
+				Ycoordinates[2] = y - height / 3;
+				Ycoordinates[3] = y - height / 3;
+				Ycoordinates[4] = y - height;
+				Ycoordinates[5] = y - height;
+				break;
+			//______
+			//|  ___|
+			//|_|
+			case 1:
+				//X Coordinates
+				Xcoordinates[0] = x;
+				Xcoordinates[1] = x;
+				Xcoordinates[2] = x + height / 3;
+				Xcoordinates[3] = x + height / 3;
+				Xcoordinates[4] = x + height;
+				Xcoordinates[5] = x + height;
+				//Y Coordinates
+				Ycoordinates[0] = y;
+				Ycoordinates[1] = y + width;
+				Ycoordinates[2] = y + width;
+				Ycoordinates[3] = y + width / 2;
+				Ycoordinates[4] = y + width / 2;
+				Ycoordinates[5] = y;
+				break;
+			//____
+			//|_  |
+			//	| |
+			//	|_|
+			case 2:
+				//X Coordinates
+				Xcoordinates[0] = x;
+				Xcoordinates[1] = x - width;
+				Xcoordinates[2] = x - width;
+				Xcoordinates[3] = x - width / 2;
+				Xcoordinates[4] = x - width / 2;
+				Xcoordinates[5] = x;
+				//Y Coordinates
+				Ycoordinates[0] = y;
+				Ycoordinates[1] = y;
+				Ycoordinates[2] = y + height / 3;
+				Ycoordinates[3] = y + height / 3;
+				Ycoordinates[4] = y + height;
+				Ycoordinates[5] = y + height;
+				break;
+			// _____
+			//|___  |
+			//    |_|
+			case 3:
+				//X Coordinates
+				Xcoordinates[0] = x;
+				Xcoordinates[1] = x - height;
+				Xcoordinates[2] = x - height;
+				Xcoordinates[3] = x - height / 3;
+				Xcoordinates[4] = x - height / 3;
+				Xcoordinates[5] = x;
+				//Y Coordinates
+				Ycoordinates[0] = y;
+				Ycoordinates[1] = y;
+				Ycoordinates[2] = y + width / 2;
+				Ycoordinates[3] = y + width / 2;
+				Ycoordinates[4] = y + width;
+				Ycoordinates[5] = y + width;
+				break;
+		}
+		
+		Polygon polygon = new Polygon(Xcoordinates, Ycoordinates, 6);
+		g.drawPolygon(polygon);
+	}
+	
 	public void drawText(String str) {
 		Graphics g = getGraphic();
 		g.setColor(GraphicsPanel.color);

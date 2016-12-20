@@ -16,14 +16,17 @@ import Instructions.Clear;
 import Instructions.Colour;
 import Instructions.DashedLine;
 import Instructions.Instruction;
+import Instructions.Isosceles;
 import Instructions.Line;
 import Instructions.Move;
 import Instructions.Oval;
 import Instructions.Rectangle;
 import Instructions.SolidCircle;
+import Instructions.SolidIsosceles;
 import Instructions.SolidOval;
 import Instructions.SolidRectangle;
 import Instructions.Spiral;
+import Instructions.TetrisL;
 import Instructions.Text;
 
 //TODO: Write Specific Content For The Help Items
@@ -61,6 +64,9 @@ public class HelpDialog extends JDialog {
 		lstValidInstructions.add(new SolidOval());
 		lstValidInstructions.add(new Circle());
 		lstValidInstructions.add(new SolidCircle());
+		lstValidInstructions.add(new Isosceles());
+		lstValidInstructions.add(new SolidIsosceles());
+		lstValidInstructions.add(new TetrisL());
 		lstValidInstructions.add(new Text());
 		lstValidInstructions.add(new Colour());
 		lstValidInstructions.add(new Clear());
