@@ -25,6 +25,7 @@ import Instructions.SolidOval;
 import Instructions.SolidRectangle;
 import Instructions.Spiral;
 import Instructions.TetrisL;
+import Instructions.TetrisLSolid;
 import Instructions.Text;
 
 public class InstructionFile {
@@ -121,6 +122,9 @@ public class InstructionFile {
 					break;
 				case "TETRIS_L":
 					executableInstruction = TetrisL.Check(instructionLine, lineNumber);
+					break;
+				case "TETRIS_L_SOLID":
+					executableInstruction = TetrisLSolid.Check(instructionLine, lineNumber);
 					break;
 				case "TEXT":
 					executableInstruction = Text.Check(instructionLine, lineNumber);

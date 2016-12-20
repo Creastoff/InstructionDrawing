@@ -1,15 +1,15 @@
 package Instructions;
 
-public class TetrisL extends Instruction{
-	private static String instruction = "TETRIS_L", about = "TETRIS_L <SIDE> <WIDTH> <HEIGHT>: Draws a clear L block from the video game Tetris from the current X & Y coordinates on the given side with the given width and height.\n";
+public class TetrisLSolid extends Instruction{
+	private static String instruction = "TETRIS_L_SOLID", about = "TETRIS_L_SOLID <SIDE> <WIDTH> <HEIGHT>: Draws a Solid L block from the video game Tetris from the current X & Y coordinates on the given side with the given width and height.\n";
 	private static int numParameters = 2;
 	private int side, width, height;
 	
-	public TetrisL() {
+	public TetrisLSolid() {
 		super(instruction, numParameters, about);
 	}
 	
-	public TetrisL(String[] parameters, boolean isValid, String ValidityReason, int lineNumber) {
+	public TetrisLSolid(String[] parameters, boolean isValid, String ValidityReason, int lineNumber) {
 		super(instruction, numParameters, about);
 		this.isValid = isValid;
 		this.ValidityReason = ValidityReason;
@@ -22,7 +22,7 @@ public class TetrisL extends Instruction{
 		}
 	}
 	
-	public static TetrisL Check(String[] parameters, int lineNumber) {
+	public static TetrisLSolid Check(String[] parameters, int lineNumber) {
 		boolean isValid = true;
 		String ValidityReason = "";
 		int side, width, height;
@@ -31,7 +31,7 @@ public class TetrisL extends Instruction{
 		if(parameters.length - 1 != 3) {
 			isValid = false;
 			ValidityReason = "3 Numbers Are Expected";
-			return new TetrisL(parameters, isValid, ValidityReason, lineNumber);
+			return new TetrisLSolid(parameters, isValid, ValidityReason, lineNumber);
 		}
 		
 		//Check the strings can be converted to numbers successfully
@@ -42,14 +42,14 @@ public class TetrisL extends Instruction{
 		} catch (NumberFormatException ex) {
 			isValid = false;
 			ValidityReason = "Only Numbers Are Allowed";
-			return new TetrisL(parameters, isValid, ValidityReason, lineNumber);
+			return new TetrisLSolid(parameters, isValid, ValidityReason, lineNumber);
 		}
 
 		//Check the side is valid
-		if(side < 0 && side > 3) {
+		if(side < 0 || side > 3) {
 			isValid = false;
-			ValidityReason = "The Side Must Be 0-3";
-			return new TetrisL(parameters, isValid, ValidityReason, lineNumber);
+			ValidityReason = "The Side Must Be Between 0-3";
+			return new TetrisLSolid(parameters, isValid, ValidityReason, lineNumber);
 		}
 		
 		//Check the numbers are valid coordinates
@@ -59,10 +59,10 @@ public class TetrisL extends Instruction{
 			ValidityReason = coordinateCheck;
 		}
 		
-		return new TetrisL(parameters, isValid, ValidityReason, lineNumber);
+		return new TetrisLSolid(parameters, isValid, ValidityReason, lineNumber);
 	}
 	
 	public void execute() {
-		GUI.GUIPanel.getDrawingPanel().drawTetrisL(side, width, height);
+		GUI.GUIPanel.getDrawingPanel().drawTetrisLSolid(side, width, height);
 	}
 }
