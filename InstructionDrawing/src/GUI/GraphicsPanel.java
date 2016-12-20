@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.Polygon;
 import java.awt.Stroke;
 import java.awt.image.BufferedImage;
 import javax.swing.JPanel;
@@ -113,6 +114,24 @@ public class GraphicsPanel extends JPanel {
 		g.setColor(GraphicsPanel.color);
 		g.drawOval(GraphicsPanel.x, GraphicsPanel.y, radius, radius);
 		g.fillOval(GraphicsPanel.x, GraphicsPanel.y, radius, radius);
+	}
+	
+	public void drawIsosceles(int width, int height) {
+		Graphics g = getGraphic();
+		g.setColor(GraphicsPanel.color);
+		int[] Xcoordinates = {GraphicsPanel.x, GraphicsPanel.x + width, GraphicsPanel.x};
+		int[] Ycoordinates = {GraphicsPanel.y, GraphicsPanel.y, GraphicsPanel.y - height};
+		Polygon polygon = new Polygon(Xcoordinates, Ycoordinates, 3);
+		g.drawPolygon(polygon);
+	}
+	
+	public void drawSolidIsosceles(int width, int height) {
+		Graphics g = getGraphic();
+		g.setColor(GraphicsPanel.color);
+		int[] Xcoordinates = {GraphicsPanel.x, GraphicsPanel.x + width, GraphicsPanel.x};
+		int[] Ycoordinates = {GraphicsPanel.y, GraphicsPanel.y, GraphicsPanel.y - height};
+		Polygon polygon = new Polygon(Xcoordinates, Ycoordinates, 3);
+		g.fillPolygon(polygon);
 	}
 	
 	public void drawText(String str) {

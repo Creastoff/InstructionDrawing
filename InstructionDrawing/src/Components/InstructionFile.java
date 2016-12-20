@@ -14,11 +14,13 @@ import Instructions.Colour;
 import Instructions.DashedLine;
 import Instructions.Instruction;
 import Instructions.InvalidInstruction;
+import Instructions.Isosceles;
 import Instructions.Line;
 import Instructions.Move;
 import Instructions.Oval;
 import Instructions.Rectangle;
 import Instructions.SolidCircle;
+import Instructions.SolidIsosceles;
 import Instructions.SolidOval;
 import Instructions.SolidRectangle;
 import Instructions.Spiral;
@@ -109,6 +111,12 @@ public class InstructionFile {
 					break;
 				case "SOLID_CIRCLE":
 					executableInstruction = SolidCircle.Check(instructionLine, lineNumber);
+					break;
+				case "ISOSCELES":
+					executableInstruction = Isosceles.Check(instructionLine, lineNumber);
+					break;
+				case "SOLID_ISOSCELES":
+					executableInstruction = SolidIsosceles.Check(instructionLine, lineNumber);
 					break;
 				case "TEXT":
 					executableInstruction = Text.Check(instructionLine, lineNumber);

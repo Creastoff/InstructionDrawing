@@ -1,7 +1,7 @@
 package Instructions;
 
 public class SolidRectangle extends Instruction{
-	private static String instruction = "SOLID_RECTANGLE", about = "SOLID_RECTANGLE <X> <Y>: Draws a solid rectangle from the current X & Y coordinates with the given width and height.\n";
+	private static String instruction = "SOLID_RECTANGLE", about = "SOLID_RECTANGLE <WIDTH> <HEIGHT>: Draws a solid rectangle from the current X & Y coordinates with the given width and height.\n";
 	private static int numParameters = 2;
 	private int width, height;
 	

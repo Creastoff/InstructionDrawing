@@ -1,23 +1,6 @@
 package GUI;
 import java.awt.FlowLayout;
-import java.util.ArrayList;
-import java.util.List;
 import javax.swing.*;
-
-import Instructions.Circle;
-import Instructions.Clear;
-import Instructions.Colour;
-import Instructions.DashedLine;
-import Instructions.Instruction;
-import Instructions.Line;
-import Instructions.Move;
-import Instructions.Oval;
-import Instructions.Rectangle;
-import Instructions.SolidCircle;
-import Instructions.SolidOval;
-import Instructions.SolidRectangle;
-import Instructions.Spiral;
-import Instructions.Text;
 
 public class GUIPanel {
 	private static String frameTitle = " - Instruction Drawer";
