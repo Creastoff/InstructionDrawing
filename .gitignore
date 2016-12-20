@@ -51,6 +51,6 @@ Temporary Items
 # =========================
 .metadata/
 .recommenders/
-.recommenders/index/http___download_eclipse_org_recommenders_models_neon_/
 InstructionDrawing/.metadata/
 InstructionDrawing/bin/
+InstructionDrawing/settings/
