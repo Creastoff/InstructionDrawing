@@ -10,8 +10,6 @@ public class GUIPanel {
 	private static final double version = 1.0;
 	
 	public GUIPanel() {
-
-		
 		//Initialise The Window Of The Program
 		frame.setSize(1500, 800);
 		frame.setResizable(true);
