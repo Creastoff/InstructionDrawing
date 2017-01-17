@@ -6,14 +6,16 @@ public class Colour extends Instruction{
 	private static int numParameters = 3;
 	private Color colour;
 	
+	//Called For Comparison & Instruction Directions
 	public Colour() {
 		super(instruction, numParameters, about);
 	}
 
-	public Colour(String[] parameters, boolean isValid, String ValidityReason, int lineNumber) {
+	//Called For Later Execution Only After Check Has Completed Successfully
+	public Colour(String[] parameters, boolean isValid, String validityReason, int lineNumber) {
 		super(instruction, numParameters, about);
 		this.isValid = isValid;
-		this.ValidityReason = ValidityReason;
+		this.validityReason = validityReason;
 		this.lineNumber = lineNumber;
 		
 		if(isValid) {
@@ -21,16 +23,17 @@ public class Colour extends Instruction{
 		}
 	}
 	
+	//Called To Make Sure The Parameters Are Valid
 	public static Colour Check(String[] parameters, int lineNumber) {
 		boolean isValid = true;
-		String ValidityReason = "";
+		String validityReason = "";
 		int r, g, b;
 		
 		//Check if the correct amount of parameters are passed
 		if(parameters.length - 1 != 3) {
 			isValid = false;
-			ValidityReason = "3 Numbers Are Expected";
-			return new Colour(parameters, isValid, ValidityReason, lineNumber);
+			validityReason = "3 Numbers Are Expected";
+			return new Colour(parameters, isValid, validityReason, lineNumber);
 		}
 		
 		//Check the strings can be converted to numbers successfully
@@ -40,20 +43,21 @@ public class Colour extends Instruction{
 			b = Integer.parseInt(parameters[3]);
 		} catch (NumberFormatException ex) {
 			isValid = false;
-			ValidityReason = "Only Numbers Are Allowed. They must no smaller than 0 and no larger than 255";
-			return new Colour(parameters, isValid, ValidityReason, lineNumber);
+			validityReason = "Only Numbers Are Allowed. They must no smaller than 0 and no larger than 255";
+			return new Colour(parameters, isValid, validityReason, lineNumber);
 		}
 		
 		//Check the numbers are valid RGB numbers
 		String colourCheck = checkRGB(r, g, b);
 		if(!colourCheck.equals("OKAY")) {
 			isValid = false;
-			ValidityReason = colourCheck;
+			validityReason = colourCheck;
 		}
 		
-		return new Colour(parameters, isValid, ValidityReason, lineNumber);
+		return new Colour(parameters, isValid, validityReason, lineNumber);
 	}
 	
+	//Check If The Parameters Are Valid RGB Numbers
 	public static String checkRGB(int r, int g, int b) {
 		String message = "OKAY";
 		

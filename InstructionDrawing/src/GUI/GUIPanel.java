@@ -1,6 +1,27 @@
 package GUI;
 import java.awt.FlowLayout;
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.swing.*;
+
+import Instructions.Circle;
+import Instructions.Clear;
+import Instructions.Colour;
+import Instructions.DashedLine;
+import Instructions.Instruction;
+import Instructions.RightTriangle;
+import Instructions.Line;
+import Instructions.Move;
+import Instructions.Oval;
+import Instructions.Rectangle;
+import Instructions.SolidCircle;
+import Instructions.SolidRightTriangle;
+import Instructions.SolidOval;
+import Instructions.SolidRectangle;
+import Instructions.Spiral;
+import Instructions.TetrisL;
+import Instructions.Text;
 
 public class GUIPanel {
 	private static String frameTitle = " - Instruction Drawer";
@@ -8,6 +29,7 @@ public class GUIPanel {
 	private static GraphicsPanel drawingPanel = new GraphicsPanel();
 	private static InstructionPanel textPanel = new InstructionPanel();
 	private static final double version = 1.0;
+	private static List<Instruction> lstValidInstructions = new ArrayList<Instruction>();
 	
 	public GUIPanel() {
 		//Initialise The Window Of The Program
@@ -26,14 +48,33 @@ public class GUIPanel {
 		//Panel
 		JPanel mainPanel = new JPanel();
 		mainPanel.setLayout(new FlowLayout());// - Sets The Layout For The Drawing & Instruction Panel
-		//Add Drawing Panel & Instruction Panel
+		//Join Drawing Panel & Instruction Panel
 		mainPanel.add(drawingPanel);
 		mainPanel.add(textPanel);
 
+		//Add Available Instructions To The Program
+		lstValidInstructions.add(new Move());
+		lstValidInstructions.add(new Line());
+		lstValidInstructions.add(new DashedLine());
+		lstValidInstructions.add(new Rectangle());
+		lstValidInstructions.add(new SolidRectangle());
+		lstValidInstructions.add(new Spiral());
+		lstValidInstructions.add(new Oval());
+		lstValidInstructions.add(new SolidOval());
+		lstValidInstructions.add(new Circle());
+		lstValidInstructions.add(new SolidCircle());
+		lstValidInstructions.add(new RightTriangle());
+		lstValidInstructions.add(new SolidRightTriangle());
+		lstValidInstructions.add(new TetrisL());
+		lstValidInstructions.add(new Text());
+		lstValidInstructions.add(new Colour());
+		lstValidInstructions.add(new Clear());
+		
 		//Joining Everything
 		frame.add(mainPanel);
 	}
 	
+	//While This Could Be Done In The Constructor It Allows Me To Prevent Any Warnings In The Main Class
 	public void setVisible() {
 		frame.setVisible(true);
 	}
@@ -48,11 +89,11 @@ public class GUIPanel {
 	}
 
 	//Called When The Text Box Is Edited To Change The Title
-	public static void onTextBoxUpdate(String str) {
+	public static void onTextBoxUpdate() {
 		if(!(frame.getTitle().charAt(0) == '*')) {
-			frame.setTitle("*" + str);
+			frame.setTitle("*" + GetFrameTitle());
 		}
-		else frame.setTitle(str);
+		else frame.setTitle(GetFrameTitle());
 	}
 	
 	public static int GetFrameWidth() {
@@ -74,5 +115,9 @@ public class GUIPanel {
 	
 	public static double getVersion() {
 		return version;
+	}
+	
+	public static List<Instruction> getValidInstructions() {
+		return lstValidInstructions;
 	}
 }

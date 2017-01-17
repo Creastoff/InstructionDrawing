@@ -1,7 +1,6 @@
 package GUI;
 
 import java.awt.Dimension;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.BoxLayout;
@@ -10,24 +9,7 @@ import javax.swing.JList;
 import javax.swing.JTextArea;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
-
-import Instructions.Circle;
-import Instructions.Clear;
-import Instructions.Colour;
-import Instructions.DashedLine;
 import Instructions.Instruction;
-import Instructions.Isosceles;
-import Instructions.Line;
-import Instructions.Move;
-import Instructions.Oval;
-import Instructions.Rectangle;
-import Instructions.SolidCircle;
-import Instructions.SolidIsosceles;
-import Instructions.SolidOval;
-import Instructions.SolidRectangle;
-import Instructions.Spiral;
-import Instructions.TetrisL;
-import Instructions.Text;
 
 //TODO: Write Specific Content For The Help Items
 
@@ -51,30 +33,11 @@ public class HelpDialog extends JDialog {
 													"      Reset Text: Loads the current contents of the file into the text box if a file has been loaded.\n";
 	private InformationArea informationPanel = new InformationArea(IntroductionText); //Panel To Display Information
     
-	public HelpDialog() {
-		//List of instructions to add to the instruction information text
-		List<Instruction> lstValidInstructions = new ArrayList<Instruction>();
-		lstValidInstructions.add(new Move());
-		lstValidInstructions.add(new Line());
-		lstValidInstructions.add(new DashedLine());
-		lstValidInstructions.add(new Rectangle());
-		lstValidInstructions.add(new SolidRectangle());
-		lstValidInstructions.add(new Spiral());
-		lstValidInstructions.add(new Oval());
-		lstValidInstructions.add(new SolidOval());
-		lstValidInstructions.add(new Circle());
-		lstValidInstructions.add(new SolidCircle());
-		lstValidInstructions.add(new Isosceles());
-		lstValidInstructions.add(new SolidIsosceles());
-		lstValidInstructions.add(new TetrisL());
-		lstValidInstructions.add(new Text());
-		lstValidInstructions.add(new Colour());
-		lstValidInstructions.add(new Clear());
-		
+	public HelpDialog(List<Instruction> lstValidInstructions) {
+		//Populate The Instruction directions
 		for(Instruction instruction : lstValidInstructions) {
 			InstructionsText += instruction.getAbout();
 		}
-		
 		
 		informationPanel.setLineWrap(true);
 		setLayout(new BoxLayout(getContentPane(), BoxLayout.Y_AXIS));

@@ -5,14 +5,16 @@ public class Circle extends Instruction{
 	private static int numParameters = 1;
 	private int r;
 	
+	//Called For Comparison & Instruction Directions
 	public Circle() {
 		super(instruction, numParameters, about);
 	}
 	
-	public Circle(String[] parameters, boolean isValid, String ValidityReason, int lineNumber) {
+	//Called For Later Execution Only After Check Has Completed Successfully
+	public Circle(String[] parameters, boolean isValid, String validityReason, int lineNumber) {
 		super(instruction, numParameters, about);
 		this.isValid = isValid;
-		this.ValidityReason = ValidityReason;
+		this.validityReason = validityReason;
 		this.lineNumber = lineNumber;
 		
 		if(isValid) {
@@ -20,16 +22,17 @@ public class Circle extends Instruction{
 		}
 	}
 	
+	//Called To Make Sure The Parameters Are Valid
 	public static Circle Check(String[] parameters, int lineNumber) {
 		boolean isValid = true;
-		String ValidityReason = "";
+		String validityReason = "";
 		int r;
 		
 		//Check if the correct amount of parameters are passed
 		if(parameters.length - 1 != 1) {
 			isValid = false;
-			ValidityReason = "1 Number Is Expected";
-			return new Circle(parameters, isValid, ValidityReason, lineNumber);
+			validityReason = "1 Number Is Expected";
+			return new Circle(parameters, isValid, validityReason, lineNumber);
 		}
 		
 		//Check the strings can be converted to numbers successfully
@@ -37,17 +40,17 @@ public class Circle extends Instruction{
 			r = Integer.parseInt(parameters[1]);
 		} catch (NumberFormatException ex) {
 			isValid = false;
-			ValidityReason = "Only Numbers Are Allowed";
-			return new Circle(parameters, isValid, ValidityReason, lineNumber);
+			validityReason = "Only Numbers Are Allowed";
+			return new Circle(parameters, isValid, validityReason, lineNumber);
 		}
 
 		//Check if the radius is a negative number
 		if(r <= 0) {
 			isValid = false;
-			ValidityReason = "Circle Radius Must Be A Positive Number";
+			validityReason = "Circle Radius Must Be A Positive Number";
 		}
 		
-		return new Circle(parameters, isValid, ValidityReason, lineNumber);
+		return new Circle(parameters, isValid, validityReason, lineNumber);
 	}
 	
 	public void execute() {

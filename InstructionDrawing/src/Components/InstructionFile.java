@@ -3,41 +3,28 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
 
 import GUI.GUIPanel;
 import GUI.InstructionPanel;
-import Instructions.Circle;
-import Instructions.Clear;
-import Instructions.Colour;
-import Instructions.DashedLine;
 import Instructions.Instruction;
 import Instructions.InvalidInstruction;
-import Instructions.Isosceles;
-import Instructions.Line;
-import Instructions.Move;
-import Instructions.Oval;
-import Instructions.Rectangle;
-import Instructions.SolidCircle;
-import Instructions.SolidIsosceles;
-import Instructions.SolidOval;
-import Instructions.SolidRectangle;
-import Instructions.Spiral;
-import Instructions.TetrisL;
-import Instructions.TetrisLSolid;
-import Instructions.Text;
 
 public class InstructionFile {
 	private static File file;
 	private static String[] strInstructions;
 	private static String[] strInstructionsAndErrors;
 	
+	//Permanently Store The Loaded File
 	public InstructionFile(File file) {
 		InstructionFile.file = file;
 		resetText();
 	}
 	
+	//Reset The Text To The Loaded File
 	public static void resetText() {
 		if(file != null) {
 			//Sets the instructions array to the file contents
@@ -63,11 +50,6 @@ public class InstructionFile {
 		} else GUIPanel.ShowMessage("Please Select A File Before Attempting To Reset", "Please Select A File");
 	}
 	
-	public static void saveFile() {
-		System.out.println(file.getName());
-		GUIPanel.UpdateTitle(file.getName());
-	}
-	
 	//Updates the instructions variable with the textbox contents
 	public static void parseInstructions() {
 		strInstructions = InstructionPanel.getInstructionBox().getText().split("\n");
@@ -80,66 +62,27 @@ public class InstructionFile {
 		for(String line : strInstructions) {
 			//Create an array with each part of the line
 			String[] instructionLine = line.split(" ");
-			Instruction executableInstruction; //Create an instance of an instruction
+			Object executableInstruction = null; //An instance of an instruction
 			
-			//Create a new object based on the instruction
-			switch(instructionLine[0]) {
-				case "MOVE":
-					executableInstruction = Move.Check(instructionLine, lineNumber);
-					break;
-				case "LINE":
-					executableInstruction = Line.Check(instructionLine, lineNumber);
-					break;
-				case "DASHED_LINE":
-					executableInstruction = DashedLine.Check(instructionLine, lineNumber);
-					break;
-				case "RECTANGLE":
-					executableInstruction = Rectangle.Check(instructionLine, lineNumber);
-					break;
-				case "SOLID_RECTANGLE":
-					executableInstruction = SolidRectangle.Check(instructionLine, lineNumber);
-					break;
-				case "SPIRAL":
-					executableInstruction = Spiral.Check(instructionLine, lineNumber);
-					break;
-				case "OVAL":
-					executableInstruction = Oval.Check(instructionLine, lineNumber);
-					break;
-				case "SOLID_OVAL":
-					executableInstruction = SolidOval.Check(instructionLine, lineNumber);
-					break;
-				case "CIRCLE":
-					executableInstruction = Circle.Check(instructionLine, lineNumber);
-					break;
-				case "SOLID_CIRCLE":
-					executableInstruction = SolidCircle.Check(instructionLine, lineNumber);
-					break;
-				case "ISOSCELES":
-					executableInstruction = Isosceles.Check(instructionLine, lineNumber);
-					break;
-				case "SOLID_ISOSCELES":
-					executableInstruction = SolidIsosceles.Check(instructionLine, lineNumber);
-					break;
-				case "TETRIS_L":
-					executableInstruction = TetrisL.Check(instructionLine, lineNumber);
-					break;
-				case "TETRIS_L_SOLID":
-					executableInstruction = TetrisLSolid.Check(instructionLine, lineNumber);
-					break;
-				case "TEXT":
-					executableInstruction = Text.Check(instructionLine, lineNumber);
-					break;
-				case "COLOUR":
-					executableInstruction = Colour.Check(instructionLine, lineNumber);
-					break;
-				case "CLEAR":
-					executableInstruction = Clear.Check(instructionLine, lineNumber);
-					break;
-				default:
-					executableInstruction = new InvalidInstruction(instructionLine, lineNumber);
-					break;
+			//Create a new object based on the instruction with method reflection
+			for(Instruction instruction : GUIPanel.getValidInstructions()) {
+				if(instructionLine[0].equals(instruction.getInstruction())) {
+					Method instructionMethod;
+					try {
+						instructionMethod = instruction.getClass().getMethod("Check", String[].class, int.class);
+						executableInstruction = instructionMethod.invoke(instruction, instructionLine, lineNumber);
+					} catch (NoSuchMethodException | SecurityException | IllegalAccessException | IllegalArgumentException | InvocationTargetException e) {
+						e.printStackTrace();
+					}
+				}
 			}
-			instructions[lineNumber - 1] = executableInstruction;
+			
+			//If the instruction cannot be found then create an invalid instruction object
+			if(executableInstruction == null) {
+				executableInstruction = new InvalidInstruction(instructionLine, lineNumber);
+			}
+			
+			instructions[lineNumber - 1] = (Instruction) executableInstruction;
 			lineNumber++;
 		}
 		
@@ -161,9 +104,5 @@ public class InstructionFile {
 				instruction.execute();
 			}
 		}
-	}
-
-	public static String[] getInstructions() {
-		return strInstructions;
 	}
 }
