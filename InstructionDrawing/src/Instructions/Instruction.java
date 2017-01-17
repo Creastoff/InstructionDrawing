@@ -1,12 +1,13 @@
 package Instructions;
 
-public class Instruction{
+public abstract class Instruction{
 	protected boolean isValid = true;
-	protected String ValidityReason = "";
+	protected String validityReason = "";
 	private String instruction, about;
 	private int numParameters;
 	protected int lineNumber;
 	
+	//Populates Variables For Parsing & The About Menu
 	protected Instruction(String instruction, int numParameters, String about) {
 		this.instruction = instruction;
 		this.numParameters = numParameters;
@@ -33,6 +34,7 @@ public class Instruction{
 		return this.lineNumber;
 	}
 	
+	//Outputs The Current Instruction Name & The Number Of Parameters It Takes
 	public String toString() {
 		if(numParameters == 1) return this.instruction + " takes " + this.numParameters + " parameter.";
 		else return this.instruction + " takes " + this.numParameters + " parameters.";
@@ -43,6 +45,6 @@ public class Instruction{
 	}
 	
 	public String getValidityReason() {
-		return this.ValidityReason;
+		return this.validityReason;
 	}
 }

@@ -4,15 +4,17 @@ public class Text extends Instruction{
 	private static String instruction = "TEXT", about = "TEXT \"<TEXT-HERE>\": Draws text at the current X & Y coordinates.\n";
 	private static int numParameters = 1;
 	private String text = "";
-	
+
+	//Called For Comparison & Instruction Directions
 	public Text() {
 		super(instruction, numParameters, about);
 	}
-	
-	public Text(String[] parameters, boolean isValid, String ValidityReason, int lineNumber) {
+
+	//Called For Later Execution Only After Check Has Completed Successfully
+	public Text(String[] parameters, boolean isValid, String validityReason, int lineNumber) {
 		super(instruction, numParameters, about);
 		this.isValid = isValid;
-		this.ValidityReason = ValidityReason;
+		this.validityReason = validityReason;
 		this.lineNumber = lineNumber;
 		
 		if(isValid) {
@@ -21,18 +23,20 @@ public class Text extends Instruction{
 			}
 		}
 	}
-	
+
+	//Called To Make Sure The Parameters Are Valid
 	public static Text Check(String[] parameters, int lineNumber) {
 		boolean isValid = true;
-		String ValidityReason = "", text = "";
+		String validityReason = "", text = "";
 		
 		//Check if the amount of parameters is greater than 1
 		if(!(parameters.length > 1)) {
 			isValid = false;
-			ValidityReason = "Quoted Text Must Follow The Text Instruction";
-			return new Text(parameters, isValid, ValidityReason, lineNumber);
+			validityReason = "Quoted Text Must Follow The Text Instruction";
+			return new Text(parameters, isValid, validityReason, lineNumber);
 		}
 		
+		//Concatenate Parameters To Make One String
 		for(int i = 1; i < parameters.length; i++) {
 			text += parameters[i] + " ";
 		}
@@ -44,14 +48,13 @@ public class Text extends Instruction{
 		
 		if(!((startChar == '"') && (endChar == '"'))) {
 			isValid = false;
-			ValidityReason = "Text Must Be Enclosed With Quotation Marks";
+			validityReason = "Text Must Be Enclosed With Quotation Marks";
 		}
 		
-		return new Text(parameters, isValid, ValidityReason, lineNumber);
+		return new Text(parameters, isValid, validityReason, lineNumber);
 	}
 	
 	public void execute() {
-		
 		GUI.GUIPanel.getDrawingPanel().drawText(text);
 	}
 }

@@ -5,14 +5,16 @@ public class Move extends Instruction{
 	private static int numParameters = 2;
 	private int x, y;
 	
+	//Called For Comparison & Instruction Directions
 	public Move() {
 		super(instruction, numParameters, about);
 	}
 	
-	public Move(String[] parameters, boolean isValid, String ValidityReason, int lineNumber) {
+	//Called For Later Execution Only After Check Has Completed Successfully
+	public Move(String[] parameters, boolean isValid, String validityReason, int lineNumber) {
 		super(instruction, numParameters, about);
 		this.isValid = isValid;
-		this.ValidityReason = ValidityReason;
+		this.validityReason = validityReason;
 		this.lineNumber = lineNumber;
 		
 		if(isValid) {
@@ -21,16 +23,17 @@ public class Move extends Instruction{
 		}
 	}
 	
+	//Called To Make Sure The Parameters Are Valid
 	public static Move Check(String[] parameters, int lineNumber) {
 		boolean isValid = true;
-		String ValidityReason = "";
+		String validityReason = "";
 		int x, y;
 		
 		//Check if the correct amount of parameters are passed
 		if(parameters.length - 1 != 2) {
 			isValid = false;
-			ValidityReason = "2 Numbers Are Expected";
-			return new Move(parameters, isValid, ValidityReason, lineNumber);
+			validityReason = "2 Numbers Are Expected";
+			return new Move(parameters, isValid, validityReason, lineNumber);
 		}
 		
 		//Check the strings can be converted to numbers successfully
@@ -39,18 +42,18 @@ public class Move extends Instruction{
 			y = Integer.parseInt(parameters[2]);
 		} catch (NumberFormatException ex) {
 			isValid = false;
-			ValidityReason = "Only Numbers Are Allowed";
-			return new Move(parameters, isValid, ValidityReason, lineNumber);
+			validityReason = "Only Numbers Are Allowed";
+			return new Move(parameters, isValid, validityReason, lineNumber);
 		}
 		
 		//Check the numbers are valid coordinates
 		String coordinateCheck = GUI.GUIPanel.getDrawingPanel().checkCoordinates(x, y);
 		if(!coordinateCheck.equals("OKAY")) {
 			isValid = false;
-			ValidityReason = coordinateCheck;
+			validityReason = coordinateCheck;
 		}
 		
-		return new Move(parameters, isValid, ValidityReason, lineNumber);
+		return new Move(parameters, isValid, validityReason, lineNumber);
 	}
 	
 	public void execute() {

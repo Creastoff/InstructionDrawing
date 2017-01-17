@@ -5,14 +5,16 @@ public class Spiral extends Instruction{
 	private static int numParameters = 4;
 	private int width, height, lineDensity, size;
 	
+	//Called For Comparison & Instruction Directions
 	public Spiral() {
 		super(instruction, numParameters, about);
 	}
 	
-	public Spiral(String[] parameters, boolean isValid, String ValidityReason, int lineNumber) {
+	//Called For Later Execution Only After Check Has Completed Successfully
+	public Spiral(String[] parameters, boolean isValid, String validityReason, int lineNumber) {
 		super(instruction, numParameters, about);
 		this.isValid = isValid;
-		this.ValidityReason = ValidityReason;
+		this.validityReason = validityReason;
 		this.lineNumber = lineNumber;
 		
 		if(isValid) {
@@ -22,17 +24,18 @@ public class Spiral extends Instruction{
 			size = Integer.parseInt(parameters[4]);
 		}
 	}
-	
+
+	//Called To Make Sure The Parameters Are Valid
 	public static Spiral Check(String[] parameters, int lineNumber) {
 		boolean isValid = true;
-		String ValidityReason = "";
+		String validityReason = "";
 		int width, height, lineDensity, size;
 		
 		//Check if the correct amount of parameters are passed
 		if(parameters.length - 1 != 4) {
 			isValid = false;
-			ValidityReason = "4 Numbers Are Expected";
-			return new Spiral(parameters, isValid, ValidityReason, lineNumber);
+			validityReason = "4 Numbers Are Expected";
+			return new Spiral(parameters, isValid, validityReason, lineNumber);
 		}
 		
 		//Check the strings can be converted to numbers successfully
@@ -43,17 +46,17 @@ public class Spiral extends Instruction{
 			size = Integer.parseInt(parameters[4]);
 		} catch (NumberFormatException ex) {
 			isValid = false;
-			ValidityReason = "Only Numbers Are Allowed";
-			return new Spiral(parameters, isValid, ValidityReason, lineNumber);
+			validityReason = "Only Numbers Are Allowed";
+			return new Spiral(parameters, isValid, validityReason, lineNumber);
 		}
 		
 		//Check the numbers are valid - width and height can be as high as possible
 		if(width < 0 || height < 0 || lineDensity < 0 || size < 0) {
 			isValid = false;
-			ValidityReason = "Only Positive Numbers Are Allowed";
+			validityReason = "Only Positive Numbers Are Allowed";
 		}
 		
-		return new Spiral(parameters, isValid, ValidityReason, lineNumber);
+		return new Spiral(parameters, isValid, validityReason, lineNumber);
 	}
 	
 	public void execute() {

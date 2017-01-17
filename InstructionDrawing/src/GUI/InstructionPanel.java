@@ -69,6 +69,7 @@ public class InstructionPanel extends JPanel{
 		setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 	}
 	
+	//Update The Text Panel To Reflect A File Contents
 	public static void UpdateTextContents(String[] instructions) {
 		txtInstructions.setText("");
 		for(String str : instructions) {
@@ -78,21 +79,23 @@ public class InstructionPanel extends JPanel{
 		}
 	}
 	
+	//Return The Current Contents Of The Instruction Contents
 	public static JTextArea getInstructionBox() {
 		return InstructionPanel.txtInstructions;
 	}
 	
+	//Update The Title Of The Window If The Text Has Been Modified
 	private class TextAreaListener implements DocumentListener{
 		public void changedUpdate(DocumentEvent e) {
-			GUIPanel.onTextBoxUpdate(GUIPanel.GetFrameTitle());
+			GUIPanel.onTextBoxUpdate();
 		}
 
 		public void insertUpdate(DocumentEvent e) {
-			GUIPanel.onTextBoxUpdate(GUIPanel.GetFrameTitle());
+			GUIPanel.onTextBoxUpdate();
 		}
 
 		public void removeUpdate(DocumentEvent e) {
-			GUIPanel.onTextBoxUpdate(GUIPanel.GetFrameTitle());
+			GUIPanel.onTextBoxUpdate();
 		}
 	}
 	
@@ -127,6 +130,7 @@ public class InstructionPanel extends JPanel{
 			}
 		}
 		
+		//Attempt To Execute The Instructions If The Text Box Is Not Empty
 		public void Draw() {
 			GUIPanel.getDrawingPanel().clear();
 			if(InstructionPanel.txtInstructions.getText().equals("")) {
@@ -142,6 +146,7 @@ public class InstructionPanel extends JPanel{
 			InstructionPanel.txtInstructions.setText("");
 		}
 		
+		//Resets Text If There Is A Loaded File
 		public void ResetText() {
 			InstructionFile.resetText();
 		}

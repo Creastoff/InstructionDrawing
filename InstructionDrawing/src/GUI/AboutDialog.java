@@ -11,6 +11,7 @@ import javax.swing.JLabel;
 public class AboutDialog extends JDialog {
 	private static final long serialVersionUID = 1L;
 	
+	//Creates A Dialog Displaying General Information About The Program
 	public AboutDialog() {
 		setLayout(new BoxLayout(getContentPane(), BoxLayout.Y_AXIS));
 		setTitle("About");

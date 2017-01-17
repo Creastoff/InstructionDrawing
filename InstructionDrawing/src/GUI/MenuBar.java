@@ -144,7 +144,7 @@ import Components.InstructionFile;
 			
 			//Displays information about the program
 			public void help_contents_menu() {
-				HelpDialog help = new HelpDialog();
+				HelpDialog help = new HelpDialog(GUIPanel.getValidInstructions());
 				help.setVisible(true);
 			}
 			

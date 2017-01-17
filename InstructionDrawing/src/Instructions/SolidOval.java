@@ -5,14 +5,16 @@ public class SolidOval extends Instruction{
 	private static int numParameters = 2;
 	private int r1, r2;
 	
+	//Called For Comparison & Instruction Directions
 	public SolidOval() {
 		super(instruction, numParameters, about);
 	}
 	
-	public SolidOval(String[] parameters, boolean isValid, String ValidityReason, int lineNumber) {
+	//Called For Later Execution Only After Check Has Completed Successfully
+	public SolidOval(String[] parameters, boolean isValid, String validityReason, int lineNumber) {
 		super(instruction, numParameters, about);
 		this.isValid = isValid;
-		this.ValidityReason = ValidityReason;
+		this.validityReason = validityReason;
 		this.lineNumber = lineNumber;
 		
 		if(isValid) {
@@ -21,16 +23,17 @@ public class SolidOval extends Instruction{
 		}
 	}
 	
+	//Called To Make Sure The Parameters Are Valid
 	public static SolidOval Check(String[] parameters, int lineNumber) {
 		boolean isValid = true;
-		String ValidityReason = "";
+		String validityReason = "";
 		int r1, r2;
 		
 		//Check if the correct amount of parameters are passed
 		if(parameters.length - 1 != 2) {
 			isValid = false;
-			ValidityReason = "1 Number Is Expected";
-			return new SolidOval(parameters, isValid, ValidityReason, lineNumber);
+			validityReason = "1 Number Is Expected";
+			return new SolidOval(parameters, isValid, validityReason, lineNumber);
 		}
 		
 		//Check the strings can be converted to numbers successfully
@@ -39,17 +42,17 @@ public class SolidOval extends Instruction{
 			r2 = Integer.parseInt(parameters[2]);
 		} catch (NumberFormatException ex) {
 			isValid = false;
-			ValidityReason = "Only Numbers Are Allowed";
-			return new SolidOval(parameters, isValid, ValidityReason, lineNumber);
+			validityReason = "Only Numbers Are Allowed";
+			return new SolidOval(parameters, isValid, validityReason, lineNumber);
 		}
 
 		//Check if the radius is a negative number
 		if(r1 <= 0 || r2 <= 0) {
 			isValid = false;
-			ValidityReason = "Oval Height & Width Must Be A Positive Number";
+			validityReason = "Oval Height & Width Must Be A Positive Number";
 		}
 		
-		return new SolidOval(parameters, isValid, ValidityReason, lineNumber);
+		return new SolidOval(parameters, isValid, validityReason, lineNumber);
 	}
 	
 	public void execute() {

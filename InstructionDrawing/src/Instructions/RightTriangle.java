@@ -1,17 +1,17 @@
 package Instructions;
 
-public class Rectangle extends Instruction{
-	private static String instruction = "RECTANGLE", about = "RECTANGLE <WIDTH> <HEIGHT>: Draws a rectangle from the current X & Y coordinates with the given width and height.\n";
+public class RightTriangle extends Instruction{
+	private static String instruction = "RIGHT_TRIANGLE", about = "RIGHT_TRIANGLE <WIDTH> <HEIGHT>: Draws an isosceles triangle from the current X & Y coordinates with the given width and height.\n";
 	private static int numParameters = 2;
 	private int width, height;
 	
 	//Called For Comparison & Instruction Directions
-	public Rectangle() {
+	public RightTriangle() {
 		super(instruction, numParameters, about);
 	}
 	
 	//Called For Later Execution Only After Check Has Completed Successfully
-	public Rectangle(String[] parameters, boolean isValid, String validityReason, int lineNumber) {
+	public RightTriangle(String[] parameters, boolean isValid, String validityReason, int lineNumber) {
 		super(instruction, numParameters, about);
 		this.isValid = isValid;
 		this.validityReason = validityReason;
@@ -24,7 +24,7 @@ public class Rectangle extends Instruction{
 	}
 	
 	//Called To Make Sure The Parameters Are Valid
-	public static Rectangle Check(String[] parameters, int lineNumber) {
+	public static RightTriangle Check(String[] parameters, int lineNumber) {
 		boolean isValid = true;
 		String validityReason = "";
 		int width, height;
@@ -33,7 +33,7 @@ public class Rectangle extends Instruction{
 		if(parameters.length - 1 != 2) {
 			isValid = false;
 			validityReason = "2 Numbers Are Expected";
-			return new Rectangle(parameters, isValid, validityReason, lineNumber);
+			return new RightTriangle(parameters, isValid, validityReason, lineNumber);
 		}
 		
 		//Check the strings can be converted to numbers successfully
@@ -43,20 +43,20 @@ public class Rectangle extends Instruction{
 		} catch (NumberFormatException ex) {
 			isValid = false;
 			validityReason = "Only Numbers Are Allowed";
-			return new Rectangle(parameters, isValid, validityReason, lineNumber);
+			return new RightTriangle(parameters, isValid, validityReason, lineNumber);
 		}
 
-		//Check the numbers are valid coordinates
+		//Check the numbers result in valid coordinates
 		String coordinateCheck = GUI.GUIPanel.getDrawingPanel().checkShapeSize(width, height);
 		if(!coordinateCheck.equals("OKAY")) {
 			isValid = false;
 			validityReason = coordinateCheck;
 		}
 		
-		return new Rectangle(parameters, isValid, validityReason, lineNumber);
+		return new RightTriangle(parameters, isValid, validityReason, lineNumber);
 	}
 	
 	public void execute() {
-		GUI.GUIPanel.getDrawingPanel().drawRectangle(width, height);
+		GUI.GUIPanel.getDrawingPanel().drawRightTriangle(width, height);
 	}
 }

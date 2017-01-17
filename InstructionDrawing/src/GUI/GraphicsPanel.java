@@ -26,6 +26,7 @@ public class GraphicsPanel extends JPanel {
 		clear();
 	}
 	
+	//Change the position of the pen
 	public void setPos(int x, int y) {
 		GraphicsPanel.x = x;
 		GraphicsPanel.y = y;
@@ -116,7 +117,7 @@ public class GraphicsPanel extends JPanel {
 		g.fillOval(GraphicsPanel.x, GraphicsPanel.y, radius, radius);
 	}
 	
-	public void drawIsosceles(int width, int height) {
+	public void drawRightTriangle(int width, int height) {
 		Graphics g = getGraphic();
 		g.setColor(GraphicsPanel.color);
 		int[] Xcoordinates = {GraphicsPanel.x, GraphicsPanel.x + width, GraphicsPanel.x};
@@ -125,7 +126,7 @@ public class GraphicsPanel extends JPanel {
 		g.drawPolygon(polygon);
 	}
 	
-	public void drawSolidIsosceles(int width, int height) {
+	public void drawSolidRightTriangle(int width, int height) {
 		Graphics g = getGraphic();
 		g.setColor(GraphicsPanel.color);
 		int[] Xcoordinates = {GraphicsPanel.x, GraphicsPanel.x + width, GraphicsPanel.x};
@@ -134,7 +135,8 @@ public class GraphicsPanel extends JPanel {
 		g.fillPolygon(polygon);
 	}
 	
-	private Polygon getTetrisPolygon(int side, int width, int height) {
+	//Get The Coordinates For A Tetris L Shape
+	private Polygon getTetrisLPolygon(int side, int width, int height) {
 		int[] Xcoordinates = new int[6];
 		int[] Ycoordinates = new int[6];
 		
@@ -225,14 +227,14 @@ public class GraphicsPanel extends JPanel {
 	public void drawTetrisL(int side, int width, int height) {
 		Graphics g = getGraphic();
 		g.setColor(GraphicsPanel.color);
-		Polygon polygon = getTetrisPolygon(side, width, height);
+		Polygon polygon = getTetrisLPolygon(side, width, height);
 		g.drawPolygon(polygon);
 	}
 	
 	public void drawTetrisLSolid(int side, int width, int height) {
 		Graphics g = getGraphic();
 		g.setColor(GraphicsPanel.color);
-		Polygon polygon = getTetrisPolygon(side, width, height);
+		Polygon polygon = getTetrisLPolygon(side, width, height);
 		g.fillPolygon(polygon);
 	}
 	
@@ -246,6 +248,7 @@ public class GraphicsPanel extends JPanel {
 		GraphicsPanel.color = color;
 	}
 	
+	//Reset The Canvas
 	public void clear() {
 		Graphics g = image.getGraphics();
 		this.setPos(0, 0);
@@ -254,9 +257,9 @@ public class GraphicsPanel extends JPanel {
 		repaint();
 	}
 	
+	//Render The Image To The Panel
 	@Override
 	public void paint(Graphics g) {
-		// render the image on the panel.
 		g.drawImage(image, 0, 0, null);
 	}
 	
